@@ -12,21 +12,20 @@ public:
         ListNode* s = head ;
         ListNode* f = head;
 
-        while(f!= NULL && f->next != NULL){
-            s= s->next ;
-            f = f->next ->next;
+        ListNode* temp = head;
 
-            if(f==s){
-                ListNode* temp = head;
-                while(s!= temp){
-                s = s->next;
-                temp = temp->next;
+        while(f!=NULL && f->next!=NULL){
+            s=s->next;
+            f=f->next->next;
+
+            if(s==f){
+                while(temp!=s){
+                    s=s->next;
+                    temp= temp->next;
                 }
-                return s;
-
+                return temp;
             }
-            
         }
-        return NULL;
+        return 0;
     }
 };
