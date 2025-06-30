@@ -1,28 +1,31 @@
 class Solution {
 public:
-bool to_check(vector<int>piles , int h , int m){
-    int hr_req = 0;
-    for(int i=0;i<piles.size();i++){
-         hr_req += ceil((piles[i]*1.0)/m);
-           
+
+int to_check(vector<int>piles , int h , int m){
+    int hours=0;
+    for(int i=0;i<piles.size();i++)
+    {
+        hours += ceil((double)piles[i]/ m);
     }
-    
-    return hr_req<= h;
+
+    return hours<= h;
 }
     int minEatingSpeed(vector<int>& piles, int h) {
-        int l =1;
-        int high = 1000000000;
-        int ans= -1;
-        while(l<high){
-            int m = (l+high)/2;
-            if(to_check(piles, h , m)){
-               
+        int low =1;
+        int high = *max_element(piles.begin(), piles.end());
+
+        while(low<high){
+            int m = (low+ high)/2;
+
+            if(to_check(piles , h , m)){
                 high = m;
+
             }
             else{
-                l = m+1;
+                low = m+1;
             }
         }
-        return l;
+
+        return high;
     }
 };
