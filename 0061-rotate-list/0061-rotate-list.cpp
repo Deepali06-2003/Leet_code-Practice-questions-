@@ -19,35 +19,31 @@ public:
         }
 
         int c=0;
-        while(f!=NULL){
+        while(f!= NULL){
             c++;
-            f=f->next;
+            f= f->next;
         }
 
-        if(k>c) k = k%c;
-
-        if(k==c || (k==0)){
+        k = k%c;
+        if(c==k || k==0){
             return head;
         }
-
-        f= head;
+        f = head;
 
         while(k!=0){
             f = f->next;
             k--;
         }
-        while(f->next != NULL){
-            s=s->next ;
-            f= f->next;
+
+        while(f->next!=NULL){
+            s= s->next;
+            f = f->next;
         }
-
-        ListNode* temp = s->next;
-        f->next = head;
-        s->next = NULL;
-        head = temp;
-
-        return head;
-
+ListNode* temp= s->next;
+f->next= head;
+s->next = NULL;
+head = temp;
+return head;
 
 
 
