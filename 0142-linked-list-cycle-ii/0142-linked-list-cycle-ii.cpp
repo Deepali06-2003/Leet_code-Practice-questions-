@@ -19,9 +19,9 @@ public:
             f=f->next->next;
 
             if(s==f){
-                while(temp!=s){
-                    s=s->next;
-                    temp= temp->next;
+                while(s!= temp){
+                    s= s->next;
+                temp = temp->next;
                 }
                 return temp;
             }
