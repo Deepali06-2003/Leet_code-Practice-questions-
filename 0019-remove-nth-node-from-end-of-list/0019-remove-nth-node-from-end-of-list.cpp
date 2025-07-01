@@ -15,22 +15,19 @@ public:
         ListNode* s= head;
 
 int c=0;
-if(k==0 || head== NULL){
+if(n==0 || head== NULL){
     return head;
 }
-        while(f!=NULL){
-            c++;
-            f= f->next;
-        }
-
-        k = k%c;
-        f=head;
-        while(k!=0){
+        
+        while(n!=0){
             f=f->next;
-            k--;
+            n--;
+        }
+        if(f==NULL){
+            return head->next;
         }
 
-        while(f!=NULL){
+        while(f->next!=NULL){
             s=s->next;
             f=f->next;
         }
