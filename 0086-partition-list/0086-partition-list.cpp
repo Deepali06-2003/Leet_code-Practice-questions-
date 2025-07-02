@@ -16,19 +16,24 @@ public:
         ListNode* l = lhead;
         ListNode* r = rhead;
 
-        while(head!= NULL){
-            if(head->val < x){
-                l->next = head;
-                l = l->next;
+        ListNode* temp = head;
+
+        while(temp!=NULL){
+            if(temp->val < x){
+                l->next = temp;
+                l= l->next;
             }
             else{
-                r->next = head;
-                r= r->next;
+                r->next = temp;
+                r=r->next;
             }
-            head= head->next;
+            temp = temp->next;
         }
+
         l->next = rhead->next;
         r->next = NULL;
+
         return lhead->next;
+        
     }
 };
