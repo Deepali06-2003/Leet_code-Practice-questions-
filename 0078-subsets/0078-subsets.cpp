@@ -1,21 +1,27 @@
 class Solution {
 public:
-void subset(vector<int>& nums , vector<vector<int>>& res , int index ,vector<int>& curr_r ){
-    if(index <0){
-        res.push_back(curr_r);
-        return ;
+void subset(vector<int>& nums , vector<vector<int>>& res , vector<int>curr, int start ){
+
+
+    res.push_back(curr);
+    
+
+    for(int i =start ; i<nums.size();i++){
+        curr.push_back(nums[i]);
+
+        subset(nums , res , curr ,i+1);
+        curr.pop_back();
+
     }
-    //exclude
-    subset(nums , res , index-1, curr_r);
-    //include
-    curr_r.push_back(nums[index]);
-    subset(nums , res , index-1 , curr_r);
-    curr_r.pop_back();
+    
 }
+
+
+
     vector<vector<int>> subsets(vector<int>& nums) {
         vector<vector<int>> res;
         vector<int>curr;
-        subset(nums , res , nums.size()-1 , curr);
+        subset(nums , res , curr, 0);
 
         return res;
     }
