@@ -6,11 +6,9 @@ void result(vector<int>& nums ,vector<int>& curr, vector<vector<int>>& res , int
 
     for(int i=start ;i<nums.size();i++){
         
-
-        if(i>start && nums[i]== nums[i-1]){
-            
-            continue;
-        }
+    if(i> start && nums[i]== nums[i-1]){
+        continue;
+    }
         curr.push_back(nums[i]);
 
         result(nums, curr , res , i+1);
