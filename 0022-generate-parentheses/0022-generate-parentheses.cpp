@@ -1,7 +1,7 @@
 class Solution {
 public:
 void result(int n , vector<string>&res , string curr , int open , int close ){
-    if(curr.size() == 2*n){
+    if(n == close){
         res.push_back(curr);
         return;
     }
