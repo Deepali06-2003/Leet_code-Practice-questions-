@@ -33,15 +33,7 @@ public:
                 temp = temp->next;
             }
         }
-        ListNode* t = lhead;
-        ListNode* prev=NULL;
-        while(t->next != NULL){
-            prev = t;
-            t = t->next;
-        }
-        if(t->val == val){
-            prev->next = NULL;
-        }
+        l->next = NULL;
         return lhead->next;
 
 
