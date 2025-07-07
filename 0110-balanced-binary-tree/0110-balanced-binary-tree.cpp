@@ -26,6 +26,12 @@ int checkHeight(TreeNode* root) {
 }
     
     bool isBalanced(TreeNode* root) {
+        if(root == NULL){
+            return true;
+        }
+        
         return checkHeight(root)!= -1;
+
+       //return true;
     }
 };
