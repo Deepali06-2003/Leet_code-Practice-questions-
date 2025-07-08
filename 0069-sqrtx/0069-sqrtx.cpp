@@ -3,21 +3,21 @@ public:
     int mySqrt(int x) {
         int l = 0;
         long long h = x;
-        int a= -1566666666666666;
+        int ans= -1;
         while(l<=h){
-            int m = (l+ h)/2;
-            if((long long)m * m == x){
+            int m = (l+h)/2;
+
+            if((long long)m*m == x){
                 return m;
             }
-            else if(x>(long long)m*m){
-                a = m;
-                l = m +1;
-                
+            else if((long long)m*m <x){
+                ans = m;
+                l= m+1;
             }
             else{
                 h = m-1;
             }
         }
-        return a;
+        return ans;
     }
 };
