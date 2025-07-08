@@ -5,17 +5,15 @@ public:
         int h = nums.size()-1;
         int m =0;
 
-        while(m<=h){
-
-            if(nums[m]==2){
-                swap(nums[m], nums[h]);
+        while(m<= h){
+            if(nums[m] ==2){
+                swap(nums[m] , nums[h]);
                 h--;
             }
             else if(nums[m]==0){
-                swap(nums[m], nums[l]);
+                swap(nums[m] , nums[l]);
                 l++;
                 m++;
-
             }
             else{
                 m++;
