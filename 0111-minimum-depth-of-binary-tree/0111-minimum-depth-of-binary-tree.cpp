@@ -11,31 +11,32 @@
  */
 class Solution {
 public:
-void helper(TreeNode* root , vector<int>& res , int c){
+void helper(TreeNode* root , int &ans , int c){
     if(root == NULL){
-        c = INT_MAX;
         return;
         
     }
-    if(root!= NULL)
+    
         c++;
 
     if(root->left == NULL && root->right == NULL){
-        res.push_back(c);
+        ans = min(c , ans);
+        return;
     }
 
-    helper(root->left , res , c);
-    helper(root->right , res , c);
+    helper(root->left , ans , c);
+    helper(root->right , ans , c);
 }
     int minDepth(TreeNode* root) {
         if(root== NULL){
             return 0;
         }
-        vector<int>res;
-        helper(root , res , 0);
+       // vector<int>res;
+       int ans =INT_MAX;
+        helper(root , ans , 0);
 
-        sort(res.begin(), res.end());
-        return res[0];
+        //sort(res.begin(), res.end());
+        return ans;
         
         
     }
