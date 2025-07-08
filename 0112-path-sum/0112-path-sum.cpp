@@ -27,7 +27,7 @@ bool helper(TreeNode* root , int target ,int curr){
 }
 
     bool hasPathSum(TreeNode* root, int targetSum) {
-        if(root == NULL || targetSum == 0){
+        if(root == NULL && targetSum == 0){
             return false;
         }
         int curr =0;
