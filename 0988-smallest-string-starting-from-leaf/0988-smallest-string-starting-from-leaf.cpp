@@ -21,12 +21,10 @@ void helper(TreeNode* root , string& res , string curr){
     if(root->left == NULL && root->right == NULL){
         reverse(curr.begin(), curr.end());
 
-        if(res.empty())
+        if(res.empty() || curr < res)
             res = curr;
-        else if(curr < res)
-            res = curr;
-    }
 
+    }
     helper(root->left , res , curr);
     helper(root->right , res , curr);
 
