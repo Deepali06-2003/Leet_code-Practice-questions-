@@ -20,7 +20,7 @@ bool helper(TreeNode* root , int target , int sum){
     if(root->left == NULL && root->right == NULL){
         if(sum == target){
             flag = true;
-            //return flag;
+            return flag;
         }
     }
     helper(root->left , target , sum);
