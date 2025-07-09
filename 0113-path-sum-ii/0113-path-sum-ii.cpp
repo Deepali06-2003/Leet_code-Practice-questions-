@@ -28,8 +28,12 @@ void helper(TreeNode* root , int target , vector<vector<int>>& res , vector<int>
     else{
         helper(root->left , target , res, curr , x);
         helper(root->right , target , res , curr , x);
+        
     }
     curr.pop_back();
+        
+    
+    
 }
 
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
