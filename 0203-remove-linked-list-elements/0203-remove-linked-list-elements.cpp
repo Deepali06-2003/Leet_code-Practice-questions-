@@ -14,9 +14,9 @@ public:
         if(head == NULL){
             return NULL;
         }
-        if(head->val == val && head->next == NULL){
-            return NULL;
-        }
+       // if(head->val == val && head->next == NULL){
+        //    return NULL;
+        //}
         ListNode* lhead = new ListNode(0);
         ListNode* l = lhead;
 
