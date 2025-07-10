@@ -29,6 +29,7 @@ public:
             f= f->next;
         }
         prev->next = s->next;
+        delete s;
 
        
 
