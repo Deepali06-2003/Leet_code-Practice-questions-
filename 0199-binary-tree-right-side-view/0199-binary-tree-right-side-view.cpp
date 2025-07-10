@@ -11,26 +11,36 @@
  */
 class Solution {
 public:
-void helper(TreeNode* root , vector<int>&res , int h){
-    if(root == NULL){
-        return;
+void helper(TreeNode* root , vector<int>& res , vector<int>&curr){
+    if(root== NULL) return ;
+
+    queue<TreeNode*>q;
+    q.push(root);
+    while(!q.empty()){
+        curr.clear();
+        int l = q.size();
+
+        for(int i=0;i<l;i++){
+
+        TreeNode* curr_n = q.front();
+        q.pop();
+        curr.push_back(curr_n->val);
+
+        if(curr_n->left) q.push(curr_n->left);
+        if(curr_n->right) q.push(curr_n->right);
+        }
+        res.push_back(curr.back());
+
     }
     
-    if(h== res.size()){
-        res.push_back(root->val);
-    }
-
-    helper(root->right, res , h+1);
-    helper(root->left, res , h+1);
 }
+
     vector<int> rightSideView(TreeNode* root) {
-        vector<int>res;
-        if(root == NULL){
-            return res;
-        }
+        vector<int> res;
+        vector<int>curr;
+        if(root == NULL) return res;
 
-        helper(root , res, 0);
-
+        helper(root , res , curr);
         return res;
     }
 };
