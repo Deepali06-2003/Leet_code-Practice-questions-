@@ -11,38 +11,30 @@
  */
 class Solution {
 public:
-int maxTree(TreeNode* root , int m){
-    if (root == NULL) return m;
-    m = max(m, root->val);
-    return maxTree(root->right , m);
-
+int min_right(int m , TreeNode* root){
+    if(root == NULL) return m;
+    m = min(m , root->val);
+    return min_right(m , root->left);
 }
-int minTree(TreeNode* root , int mi){
-    if(root== NULL) return mi;
-    mi = min(root->val , mi);
-    return minTree(root->left , mi);
+int max_left(TreeNode* root , int m){
+     if(root == NULL) return m;
+     m = max(m , root->val);
+     return max_left(root->right , m);
 }
-
     bool isValidBST(TreeNode* root) {
-        if(root== NULL){
+        if(root == NULL){
             return true;
         }
-        
-        if(root->left != NULL){
-            //find max of root->left
-            
-            int leftChild = maxTree(root->left , INT_MIN);
-            if(leftChild >= root->val ) return false;
-        }
-        if(root->right != NULL){
-            //find min of root->right
-            int mi = INT_MAX;
-            int rightChild = minTree(root->right , mi);
-            if(rightChild <= root->val ) return false;
+        if(root->left){
+            int lc = max_left(root->left , INT_MIN);
+            if(lc >= root->val) return false;
         }
 
+        if(root->right){
+            int rc = min_right(INT_MAX , root->right);
+            if(rc <= root->val) return false;
+        }
 
-
-        return isValidBST(root->left) && isValidBST(root->right);
+        return isValidBST(root->left) and isValidBST(root->right);
     }
 };
