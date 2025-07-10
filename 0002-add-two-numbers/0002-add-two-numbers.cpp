@@ -21,29 +21,22 @@ public:
         }
 
         int s=0;
-        int c=0;
-        int v=0;
-        while(l1!=NULL || l2!= NULL){
-            if(l1!= NULL){
+        while(l1!= NULL || l2!= NULL){
+            if(l1 != NULL){
                 s = s+ l1->val;
                 l1 = l1->next;
             }
-            if(l2!=NULL){
-                s = s+ l2->val;
-                l2 = l2->next;
+
+            if(l2!= NULL){
+                s= s+ l2->val;
+                l2= l2->next;
             }
-            
-            
-
-            v= s%10;
-            ListNode* v1 = new ListNode(v);
-            s = s/10;
-
-            l3->next = v1;
-            l3 = l3->next;
-
+            ListNode* x = new ListNode(s%10);
+            l3->next = x;
+            l3= l3->next;
+            s= s/10;
         }
-        if(s!=0){
+        if(s!= 0){
             l3->next = new ListNode(s);
         }
         
