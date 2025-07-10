@@ -20,7 +20,7 @@ class Solution {
 public:
 Node* helper(Node* root){
     if(root==NULL){
-        return root;
+        return NULL;
     }
 
     queue<Node*>q;
