@@ -11,14 +11,24 @@
  */
 class Solution {
 public:
-    int countNodes(TreeNode* root) {
-        int c =0;
+int c=0;
+void helper(TreeNode* root){
+        
         if(root == NULL){
-            return 0;
+            return ;
         }
         if(root != NULL){
             c++;
         }
-         return countNodes(root->left)+ countNodes(root->right)+1;
+        helper(root->left);
+        helper(root->right);
+  
+}
+    int countNodes(TreeNode* root) {
+        if(root == NULL) return 0;
+
+        helper(root);
+
+        return c;
     }
 };
