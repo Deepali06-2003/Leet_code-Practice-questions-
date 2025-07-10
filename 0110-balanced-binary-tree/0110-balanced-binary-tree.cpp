@@ -22,7 +22,7 @@ int checkHeight(TreeNode* root) {
 
         if (abs(leftHeight - rightHeight) > 1) return -1; // current node 
 
-        return max(leftHeight, rightHeight)+1 ;  // return height
+        return 1+ max(leftHeight , rightHeight) ;  // return height
 }
     
     bool isBalanced(TreeNode* root) {
