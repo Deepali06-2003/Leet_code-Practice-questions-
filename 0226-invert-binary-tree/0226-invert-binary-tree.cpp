@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-void helper(TreeNode* root , int h){
+void helper(TreeNode* root ){
     if(root== NULL) return;
 
     if(root->left != NULL || root->right != NULL){
@@ -20,10 +20,10 @@ void helper(TreeNode* root , int h){
 
         root->left = rc;
         root->right = lc;
-        h++;
+        
     }
-    helper(root->left , h);
-    helper(root->right , h);
+    helper(root->left );
+    helper(root->right );
 }
     TreeNode* invertTree(TreeNode* root) {
 
@@ -35,7 +35,7 @@ void helper(TreeNode* root , int h){
         }
         
        
-        helper(root , 0);
+        helper(root );
 
         return root;
     }
