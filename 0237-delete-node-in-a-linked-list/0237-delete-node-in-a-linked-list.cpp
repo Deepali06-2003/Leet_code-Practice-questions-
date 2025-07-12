@@ -16,6 +16,6 @@ public:
         node->next = node->next->next;
 
         // Optional: free memory (not required in LeetCode but good practice)
-        delete temp;
+        //delete temp;
     }
 };
