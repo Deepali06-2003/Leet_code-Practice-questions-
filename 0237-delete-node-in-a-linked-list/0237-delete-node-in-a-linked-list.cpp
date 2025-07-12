@@ -10,9 +10,6 @@ class Solution {
 public:
     void deleteNode(ListNode* node) {
        node->val = node->next->val;
-
-        // Skip over the next node
-        ListNode* temp = node->next;
         node->next = node->next->next;
 
         // Optional: free memory (not required in LeetCode but good practice)
