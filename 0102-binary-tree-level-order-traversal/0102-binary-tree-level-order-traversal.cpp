@@ -11,42 +11,32 @@
  */
 class Solution {
 public:
- queue<TreeNode*> q;
-    void helper(TreeNode* root  , vector<int>& curr , vector<vector<int>>&res ){
-        if(root == NULL){
-            return ;
+void helper(TreeNode* root , vector<vector<int>>&res , vector<int>curr){
+    if(root== NULL)return;
+
+    queue<TreeNode*>q;
+    q.push(root);
+    while(!q.empty()){
+        curr.clear();
+        int level = q.size();
+        for(int i=0;i<level;i++){
+            TreeNode* cur_n = q.front();
+            q.pop();
+            curr.push_back(cur_n->val);
+
+            if(cur_n->left) q.push(cur_n->left);
+            if(cur_n->right) q.push(cur_n->right);
         }
-        q.push(root);
-
-
-        while(!q.empty()){
-            curr.clear();
-            int level = q.size();
-            for(int i=0;i<level;i++){
-
-                TreeNode* curr_n = q.front();
-                q.pop();
-                curr.push_back(curr_n->val);
-                if(curr_n->left) q.push(curr_n->left);
-                if(curr_n->right) q.push(curr_n->right);
-
-            }
-
-            res.push_back(curr);
-        }
+        res.push_back(curr);
     }
+    
+}
     vector<vector<int>> levelOrder(TreeNode* root) {
-        
-        vector<int> curr;
         vector<vector<int>> res;
-
+        vector<int> curr;
         if(root == NULL) return res;
 
-        helper(root ,curr, res);
-
+        helper(root , res , curr);
         return res;
-
-
-
     }
 };
