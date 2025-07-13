@@ -12,35 +12,33 @@
 class Solution {
 public:
 void helper(TreeNode* root , vector<vector<int>>& res , vector<int>& curr){
-    if(root == NULL) return;
+    if(root == NULL)return;
 
-    queue<TreeNode*> q;
-
+    queue<TreeNode*>q;
     q.push(root);
     while(!q.empty()){
-        curr.clear();
         int level = q.size();
-
+        curr.clear();
         for(int i=0;i<level ;i++){
-            TreeNode* curr_n = q.front();
+            TreeNode* n = q.front();
             q.pop();
 
-            curr.push_back(curr_n->val);
+            curr.push_back(n->val);
 
-            if(curr_n->left) q.push(curr_n->left);
-            if(curr_n->right) q.push(curr_n->right);
+            if(n->left) q.push(n->left);
+            if(n->right) q.push(n->right);
         }
         res.push_back(curr);
     }
 }
     vector<vector<int>> levelOrderBottom(TreeNode* root) {
-        vector<vector<int>> res;
-        vector<int> curr;
+        vector<vector<int>>res;
+        if(root== NULL)return res;
 
-        if(root== NULL) return res;
-
-        helper(root , res , curr);
-        reverse(res.begin() , res.end());
+        vector<int>curr;
+        helper(root, res ,curr);
+        reverse(res.begin(), res.end());
         return res;
+        
     }
 };
