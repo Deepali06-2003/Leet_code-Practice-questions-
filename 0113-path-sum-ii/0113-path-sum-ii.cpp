@@ -25,11 +25,11 @@ void helper(TreeNode* root , int target , vector<vector<int>>& res , vector<int>
             res.push_back(curr);
         }
     }
-    else{
+    //else{
         helper(root->left , target , res, curr , x);
         helper(root->right , target , res , curr , x);
         
-    }
+    //}
     curr.pop_back();
         
     
@@ -42,8 +42,8 @@ void helper(TreeNode* root , int target , vector<vector<int>>& res , vector<int>
         if(root== NULL && 0 == targetSum){
             return res;
         }
-        int x=0;
-        helper(root , targetSum , res , curr , x);
+        
+        helper(root , targetSum , res , curr , 0);
 
         return res;
         
