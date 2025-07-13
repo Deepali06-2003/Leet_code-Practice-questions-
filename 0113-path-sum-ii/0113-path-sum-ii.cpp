@@ -11,8 +11,8 @@
  */
 class Solution {
 public:
-void helper(TreeNode* root , int target , vector<vector<int>>& res , vector<int>& curr , int x){
-
+void helper(TreeNode* root , int target , vector<vector<int>>& res ,vector<int> curr , int x){
+    
     if(root == NULL){
         return;
     }
@@ -26,8 +26,8 @@ void helper(TreeNode* root , int target , vector<vector<int>>& res , vector<int>
         }
     }
     //else{
-        helper(root->left , target , res, curr , x);
-        helper(root->right , target , res , curr , x);
+        helper(root->left , target , res ,curr, x);
+        helper(root->right , target , res ,curr, x);
         
     //}
     curr.pop_back();
@@ -43,7 +43,7 @@ void helper(TreeNode* root , int target , vector<vector<int>>& res , vector<int>
             return res;
         }
         
-        helper(root , targetSum , res , curr , 0);
+        helper(root , targetSum , res,curr , 0);
 
         return res;
         
