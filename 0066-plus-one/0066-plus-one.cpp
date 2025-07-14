@@ -2,17 +2,15 @@ class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) {
         int n = digits.size();
-    
-    for (int i = n - 1; i >= 0; i--) {
-        if (digits[i] < 9) {
-            digits[i] += 1;
-            return digits; // done, no carry needed
+        int s=1;
+        for(int i = n-1 ;i>=0;i--){
+            s = s+ digits[i];
+            digits[i]= s%10;
+            s= s/10;
         }
-        digits[i] = 0; // carry over
-    }
-
-    // If we're here, it means all digits were 9 -> [9,9,9] becomes [1,0,0,0]
-    digits.insert(digits.begin(), 1);
-    return digits;
+        if(s!=0){
+            digits.insert(digits.begin(),s);
+        }
+        return digits;
     }
 };
