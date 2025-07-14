@@ -1,42 +1,29 @@
 class Solution {
 public:
     int rob(vector<int>& nums) {
+        int n = nums.size();
 
-if (nums.size() == 1) return nums[0];
+        if(n==0)return 0;
+        if(n==1) return nums[0];
 
-int n = nums.size();
+        vector<int>dp1(n ,0);
+        vector<int>dp2(n,0);
 
+        dp1[0]= 0;
+        dp1[1]= nums[1];
+        for(int i=2;i<n;i++){
+            dp1[i] = max(dp1[i-1] , dp1[i-2] + nums[i]);
+        }
 
-vector<int> DP (n, 0);
-vector<int> new_DP (n,0);
+        dp2[0]= nums[0];
+        dp2[1]= max(nums[0],nums[1]);
+        for(int i=2;i<n;i++){
+            if(i == n-1)dp2[i]= dp2[i-1];
+            else{
+                dp2[i] = max(dp2[i-1] , dp2[i-2]+nums[i]);
+            }
+        }
 
-DP[0] = 0; // dont rob 1st house
-DP[1] = nums[1];
-
-new_DP[0] = nums[0]; // dont rob last house
-new_DP[1] = max(nums[0] , nums[1]);
-
-
-for (int i=2; i<nums.size(); i++){
-DP[i] = max(DP[i-1], nums[i]+ DP[i-2]);
-}
-
-for (int i=2; i<nums.size(); i++){
-
-if (i== n-1) new_DP[i] = new_DP[i-1]; // dont rob last house
-
-else new_DP[i] = max(new_DP[i-1], nums[i]+ new_DP[i-2]);
-}
-
-return max(DP.back(), new_DP.back());
-
-
-
-
-
-
-
-}
+        return max(dp1.back(), dp2.back());
+    }
 };
-
-
