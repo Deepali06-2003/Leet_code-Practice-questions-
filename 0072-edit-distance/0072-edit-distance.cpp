@@ -15,9 +15,7 @@ public:
                     arr[i][j]= arr[i-1][j-1];
                 }
                 else{
-                    arr[i][j] = 1 + min({arr[i - 1][j - 1],  // replace
-                                    arr[i - 1][j],      // delete
-                                    arr[i][j - 1]}); 
+                    arr[i][j] = 1 + min( { arr[i - 1][j - 1],  arr[i - 1][j], arr[i][j - 1] } ); 
                 }
             }
         }
