@@ -20,7 +20,10 @@ public:
                 }
                 else 
                 arr[i][j] =  min(arr [i-1][j] + s1[i-1], arr[i][j-1] + s2[j-1]);
+
+                cout<<arr[i][j]<<' ';
             }
+            cout<<"\n";
         }
         return (arr[n][m]);
     }
