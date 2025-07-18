@@ -1,21 +1,16 @@
 class Solution {
 public:
 
-int DFS(vector<vector<int>>& grid , int i , int j , int n , int m){
-    if(i<0 || j<0 || i==n || j==m || grid[i][j]==0) return 0;
+void DFS(vector<vector<int>>& grid , int i , int j , int n , int m , int& t){
+    if(i<0 || j<0 || i==n || j==m || grid[i][j]==0) return;
     
-    
+         t++;
         grid[i][j]=0;
-        int count =1;
-    
-    
 
-    count += DFS(grid , i+1 , j, n , m);
-    count+= DFS(grid , i , j-1 , n , m);
-    count += DFS(grid , i-1 , j , n , m);
-    count += DFS(grid , i , j+1 , n , m);
-
-    return count;
+     DFS(grid , i+1 , j, n , m , t);
+     DFS(grid , i , j-1 , n , m , t);
+     DFS(grid , i-1 , j , n , m , t);
+     DFS(grid , i , j+1 , n , m , t);
 
 
 }
@@ -23,11 +18,14 @@ int DFS(vector<vector<int>>& grid , int i , int j , int n , int m){
         int n = grid.size();
         int m = grid[0].size();
         int ans=0;
+        
 
         for(int i=0;i<n;i++){
             for(int j =0 ;j<m ;j++){
                 if(grid[i][j] == 1){
-                    ans = max(ans , DFS(grid , i , j , n , m));
+                    int t=0;
+                    DFS(grid , i , j , n , m , t);
+                    ans = max(ans , t);
                 }
             }
         }
