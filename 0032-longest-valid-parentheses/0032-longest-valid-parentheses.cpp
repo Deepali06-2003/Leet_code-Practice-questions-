@@ -1,23 +1,23 @@
 class Solution {
 public:
     int longestValidParentheses(string s) {
-        stack<int> st;
-    st.push(-1);
-    int max_len = 0;
+        int max_l=0;
+        stack<int>st;
 
-    for (int i = 0; i < s.size(); i++) {
-        if (s[i] == '(') {
-            st.push(i);
-        } else {
-            st.pop();
-            if (st.empty()) {
-                st.push(i);
-            } else {
-                max_len = max(max_len, i - st.top());
+        st.push(-1);
+
+        for(int i=0;i<s.size();i++){
+            if(s[i]=='(') st.push(i);
+
+            else{
+                st.pop();
+                if(st.empty()) st.push(i);
+
+                else {
+                    max_l = max(max_l , i-st.top());
+                }
             }
         }
-    }
-
-    return max_len;
+        return max_l;
     }
 };
