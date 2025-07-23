@@ -10,14 +10,14 @@ public:
             }
             else{
                 if(st.empty())
-                return false;
-                if(!st.empty()){
+                    return false;
+                
                     char x = st.top();
                     if( (x=='(' && s[i]==')') || ( x=='{' && s[i]=='}')  ||  (x=='[' && s[i]==']')) 
-                    st.pop();
+                        st.pop();
                     else 
-                    return false;
-                }
+                        return false;
+                
                 
             }
         }
