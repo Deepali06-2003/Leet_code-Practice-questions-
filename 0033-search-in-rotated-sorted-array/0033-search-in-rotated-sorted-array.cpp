@@ -9,7 +9,7 @@ public:
 
             if(nums[m] == target)return m;
 
-            if(nums[m] > nums[l]){
+            if(nums[m] >= nums[l]){
                 if(target >=nums[l] && target < nums[m]){
                     h=m-1;
                 }
