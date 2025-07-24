@@ -1,18 +1,17 @@
 class Solution {
 public:
-bool NoOfDays(vector<int> weights, int days , int m){
-    int day = 1;
-    int curr=0;
+bool helper(vector<int>& weights, int days , int m){
+    int c=0;
+    int d=1;
     for(int i =0;i<weights.size();i++){
-        //curr += weights[i];
-        if(curr + weights[i] > m){
-            day ++;
-            curr=0;
+
+        if(c+ weights[i] > m){
+            d++;
+            c=0;
         }
-        
-        curr += weights[i];
+        c= c+ weights[i];
     }
-    return day <=days;
+    return d<= days;
 }
     int shipWithinDays(vector<int>& weights, int days) {
         int l = *max_element(weights.begin() , weights.end());
@@ -21,8 +20,8 @@ bool NoOfDays(vector<int> weights, int days , int m){
         while(l<h){
             int m = (l+h)/2;
 
-            if(NoOfDays(weights , days , m)){
-                h = m;
+            if(helper(weights , days , m)){
+                h=m;
             }
             else{
                 l = m+1;
