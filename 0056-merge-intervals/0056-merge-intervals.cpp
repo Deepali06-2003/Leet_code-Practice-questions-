@@ -13,8 +13,5 @@ public:
             }
         }
         return result;
-
-
-
     }
 };
