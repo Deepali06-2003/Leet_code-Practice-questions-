@@ -1,19 +1,23 @@
 class Solution {
 public:
-
     vector<vector<int>> generate(int numRows) {
-        vector<vector<int>> triangle;
-
-        for (int i = 0; i < numRows; ++i) {
-            vector<int> row(i + 1, 1); // First and last elements are always 1
-
-            for (int j = 1; j < i; ++j) {
-                row[j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
+        vector<vector<int>>dp(numRows , vector<int>(numRows));
+        vector<vector<int>> result;
+        
+        for(int i = 0 ;i<numRows;i++){
+            dp[i][0] = 1;
+        }
+        for(int i = 0 ; i< numRows ;i++){
+            vector<int> temp;
+            temp.push_back(dp[i][0]);
+            for(int j =1;j<=i ;j++)
+            {
+                dp[i][j] = dp[i-1][j-1] + dp[i-1][j];
+                temp.push_back(dp[i][j]);
             }
 
-            triangle.push_back(row);
+            result.push_back(temp);
         }
-
-        return triangle;
+        return result;
     }
 };
