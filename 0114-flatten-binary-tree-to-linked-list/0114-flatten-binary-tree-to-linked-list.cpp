@@ -14,21 +14,23 @@ public:
 TreeNode* helper(TreeNode* root){
      if(root == NULL)return NULL;
 
-    helper(root->left);
-    helper(root->right);
+    TreeNode* lh = helper(root->left);
+    TreeNode* rh = helper(root->right);
 
     
-    TreeNode* l= root->left;
-    TreeNode* r = root->right;
+    TreeNode* x = root;
 
     root->left = NULL;
-    root->right = l;
+    root->right = lh;
 
-    TreeNode* temp = root;
-    while(temp->right) temp = temp->right;
+    while(x->right){
+        x= x->right;
+    }
+    x->right = rh;
 
-    temp->right = r;
     return root;
+
+    
 
 }
     void flatten(TreeNode* root) {
