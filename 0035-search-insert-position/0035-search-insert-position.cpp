@@ -9,12 +9,13 @@ public:
             if(nums[m] == target){
                 return m;
             }
-            else if(nums[m]>target){
-                h = m-1;
-                ans = m;
+            else if(nums[m]<target){
+                l = m+1;
+                
             }
             else{
-                l = m+1;
+                h = m-1;
+                ans = m;
                 
             }
         }
