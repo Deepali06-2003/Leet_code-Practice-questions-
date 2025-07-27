@@ -19,7 +19,7 @@ void helper(TreeNode* root){
     
     root->left = NULL;        // Remove the left child
     curr->right = root;       // Attach current node to the right
-    curr = root;
+    curr = curr->right;
 
     helper(root->right);
 }
