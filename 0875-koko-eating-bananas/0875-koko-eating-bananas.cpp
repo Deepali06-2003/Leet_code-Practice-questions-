@@ -1,28 +1,26 @@
 class Solution {
 public:
-bool helper(vector<int>& piles , int h , int mid){
-
+bool helper(vector<int>& piles, int h , int m){
     int c=0;
-    for(int i =0;i<piles.size();i++){
-        c += ceil((double)piles[i]/mid);
+    for(int i =0;i<piles.size() ;i++){
+        c = c+ ceil((double) piles[i]/m);
     }
-
-    return c<= h;
+    return c<=h;
 }
     int minEatingSpeed(vector<int>& piles, int h) {
-        int low = 1;
-        int high = *max_element(piles.begin() , piles.end());
+        int l = 1;
+        int hi = *max_element(piles.begin(), piles.end());
 
-        while(low<high){
-            int mid = (low+ high)/2;
+        while(l<hi){
+            int m = (l+hi)/2;
 
-            if(helper(piles , h , mid)){
-                high = mid;
+            if( helper(piles , h , m)){
+                hi = m;
             }
             else{
-                low = mid+1;
+                l = m+1;
             }
         }
-        return high;
+        return hi;
     }
 };
