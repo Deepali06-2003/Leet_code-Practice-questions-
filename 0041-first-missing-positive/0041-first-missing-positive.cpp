@@ -5,7 +5,7 @@ public:
         int n = nums.size();
         while(i<n){
             
-            if((nums[i]>0) && (nums[i]<= n) && (nums[i]!=nums[nums[i]-1] ) ){
+            if(nums[i]> 0 && nums[i]<n&& nums[i] != nums[ nums[i]-1] ){
                 int curr_i = nums[i]-1;
                 swap(nums[i] , nums[curr_i]);
             }
