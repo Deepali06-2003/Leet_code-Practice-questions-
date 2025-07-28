@@ -1,6 +1,7 @@
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
+        
         int l =0;
         int h = nums.size()-1;
 
@@ -9,22 +10,21 @@ public:
 
             if(nums[m] == target)return m;
 
-            if(nums[m] >= nums[l]){
-                if(target >=nums[l] && target < nums[m]){
-                    h=m-1;
+            if( nums[m]>= nums[l]){
+                if(nums[l]<= target && target< nums[m]){
+                    h = m-1;
                 }
                 else{
-                    l=m+1;
+                    l = m +1;
                 }
             }
             else{
-                if(target >nums[m] && target <= nums[h]){
-                    l=m+1;
+                if(nums[m]<target && target <= nums[h]){
+                    l= m+1;
                 }
                 else{
-                    h=m-1;
+                    h = m-1;
                 }
-
             }
         }
         return -1;
