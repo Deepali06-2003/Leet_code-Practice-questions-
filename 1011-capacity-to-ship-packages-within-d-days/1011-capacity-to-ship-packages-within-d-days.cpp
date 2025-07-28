@@ -1,32 +1,30 @@
 class Solution {
 public:
-bool helper(vector<int>& weights, int days, int m ){
-    int c =1;
-    int curr=0;
-    for(int i =0;i<weights.size() ;i++){
-        if(curr+ weights[i] >m){
-            c++;
-            curr=0;
+bool helper(vector<int>& weights, int days , int m){
+    int d=1  , c =0;
+    for(int i =0;i<weights.size();i++){
+        if(c+ weights[i] > m){
+            c=0;
+            d++;
         }
-        curr += weights[i];
+        c = c+ weights[i];
     }
-    return c<= days;
+    return d<= days;
 }
     int shipWithinDays(vector<int>& weights, int days) {
         int l = *max_element(weights.begin() , weights.end());
         int h = accumulate(weights.begin() , weights.end() , 0);
 
         while(l<h){
-
             int m = (l+h)/2;
 
-            if(helper(weights , days , m)) h = m;
-
+            if(helper(weights , days , m)){
+                h = m;
+            }
             else{
                 l = m+1;
             }
         }
-
         return h;
     }
 };
