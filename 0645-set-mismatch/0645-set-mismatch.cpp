@@ -6,7 +6,7 @@ public:
 
             int c = nums[i]-1;
 
-            if(nums[i]<nums.size() && nums[i] != nums[c]){
+            if(i<nums.size() && nums[i] != nums[c]){
                 swap(nums[i], nums[c]);
             }
             else{
