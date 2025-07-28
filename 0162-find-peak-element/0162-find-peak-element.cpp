@@ -4,7 +4,6 @@ public:
         
         int l =0;
         int h = nums.size()-1;
-
         while(l<h){
             int m = (l+h)/2;
 
@@ -12,7 +11,7 @@ public:
                 h=m;
             }
             else{
-                l = m+1;
+                l= m+1;
             }
         }
         return h;
