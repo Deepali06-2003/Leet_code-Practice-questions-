@@ -11,32 +11,31 @@
  */
 class Solution {
 public:
-void helper(TreeNode* root , vector<vector<int>>&res , vector<int>curr){
-    if(root== NULL)return;
+void helper(TreeNode* root , vector<vector<int>>&res , vector<int>&curr){
+    if(root == NULL)return;
 
     queue<TreeNode*>q;
     q.push(root);
-    while(!q.empty()){
-        curr.clear();
-        int level = q.size();
-        for(int i=0;i<level;i++){
-            TreeNode* cur_n = q.front();
-            q.pop();
-            curr.push_back(cur_n->val);
 
-            if(cur_n->left) q.push(cur_n->left);
-            if(cur_n->right) q.push(cur_n->right);
+    while(!q.empty()){
+        int l = q.size();
+        curr.clear();
+        for(int i =0 ;i<l;i++){
+            TreeNode* c = q.front();
+            q.pop();
+            curr.push_back(c->val);
+            if(c->left) q.push(c->left);
+            if(c->right) q.push(c->right);
         }
         res.push_back(curr);
     }
-    
 }
     vector<vector<int>> levelOrder(TreeNode* root) {
-        vector<vector<int>> res;
-        vector<int> curr;
-        if(root == NULL) return res;
+         vector<vector<int>>res;
+         vector<int>curr;
 
-        helper(root , res , curr);
-        return res;
+         helper(root ,res , curr);
+
+         return res;
     }
 };
