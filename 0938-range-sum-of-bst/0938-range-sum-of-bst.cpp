@@ -18,8 +18,17 @@ void helper(TreeNode* root , int l , int h){
     if(root->val>= l && root->val <= h){
         s= s+ root->val;
     }
-    helper(root->left , l,h);
-    helper(root->right , l , h);
+    if(root->val >h){
+        helper(root->left , l,h);
+    }
+    else if(root->val < l){
+        helper(root->right , l , h);
+    }
+    else{
+        helper(root->left , l,h);
+        helper(root->right , l , h);
+    }
+   
 
 }
     int rangeSumBST(TreeNode* root, int low, int high) {
