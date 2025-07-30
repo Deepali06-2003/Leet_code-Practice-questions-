@@ -4,48 +4,50 @@ public:
         int n = grid.size();
         int m = grid[0].size();
 
-        queue<pair<int, int>>q;
+        queue<pair<int,int>>q;
         int f=0 , r=0;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(grid[i][j] ==1)f++;
-                else if(grid[i][j]==2){
+        for(int i =0;i<n;i++){
+            for(int j = 0;j<m;j++){
+
+                if(grid[i][j]== 1){
+                    f++;
+                }
+                else if(grid[i][j] == 2){
+                    q.push({i, j});
                     r++;
-                    q.push({i,j});
                 }
             }
         }
         if(f==0)return 0;
-        int min=0;
+        int ans=0;
 
-        vector<int>dx ={0, 0 , 1, -1};
-        vector<int>dy={1,-1,0,0};
+        vector<int>dx= {0 , 0 , 1 , -1};
+        vector<int>dy= {1 , -1 , 0 , 0};
 
         while(!q.empty()){
-            int size = q.size();
-            for(int i=0;i<size;i++){
-                pair<int,int>node = q.front();
+            int l = q.size();
+            for(int i =0 ;i<l ;i++){
+                pair<int, int>t = q.front();
                 q.pop();
 
-                int row = node.first;
-                int col = node.second;
+                int x = t.first;
+                int y = t.second; 
 
-                for(int j =0;j<4 ;j++){
+                for(int j =0 ; j<4 ;j++){
+                    int nx = x+dx[j];
+                    int ny = y +dy[j];
 
-                    int x = row+dx[j];
-                    int y = col + dy[j];
-
-                    if(x>=0 && y>=0 && x<n && y<m && grid[x][y] == 1){
-                        q.push({x, y});
-                        grid[x][y] = 2;
+                    if(nx>=0 && nx< n && ny>=0 && ny<m && grid[nx][ny]==1){
+                        grid[nx][ny]=2;
+                        q.push({nx , ny});
                         f--;
-
                     }
                 }
             }
-            if(!q.empty()) min++;
+            if(!q.empty())ans++;
         }
-        if(f == 0)return min;
+        if(f==0)return ans;
+
         return -1;
     }
 };
