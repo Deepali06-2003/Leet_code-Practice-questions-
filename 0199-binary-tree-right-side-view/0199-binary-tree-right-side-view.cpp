@@ -20,14 +20,14 @@ void helper(TreeNode* root , vector<int>& res , vector<int>&curr){
         curr.clear();
         int l = q.size();
 
-        for(int i=0;i<l;i++){
+        for(int i =0 ; i<l ;i++){
+            TreeNode* c = q.front();
+            q.pop();
 
-        TreeNode* curr_n = q.front();
-        q.pop();
-        curr.push_back(curr_n->val);
-
-        if(curr_n->left) q.push(curr_n->left);
-        if(curr_n->right) q.push(curr_n->right);
+            curr.push_back(c->val);
+            
+            if(c->left) q.push(c->left);
+            if(c->right) q.push(c->right);
         }
         res.push_back(curr.back());
 
