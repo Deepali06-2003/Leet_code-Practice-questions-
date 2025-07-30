@@ -5,6 +5,7 @@ void dfs(vector<vector<int>>& grid1 , vector<vector<int>>& grid2 , int i , int j
 
     if (grid1[i][j] != 1) isSubIsland = false;
     grid2[i][j] = 0;
+    grid1[i][j] =0;
 
     dfs(grid1 , grid2 ,i+1 , j , n, m , isSubIsland);
     dfs(grid1 ,grid2,i , j-1 , n , m, isSubIsland);
