@@ -13,6 +13,9 @@ public:
                 if((x=='(' && s[i]==')') || (x=='{' && s[i]=='}') || (x=='[' && s[i]==']') ){
                     st.pop();
                 }
+                else{
+                    return false;
+                }
             }
 
         }
