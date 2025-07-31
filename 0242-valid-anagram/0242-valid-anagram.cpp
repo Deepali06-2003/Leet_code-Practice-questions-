@@ -13,7 +13,7 @@ public:
             }
 
             for(char c : t){
-                if(m[c]==0 || m.count(c)==0) return false;
+                if(m[c]==0 ) return false;
                 m[c]--;
             }
 
