@@ -18,42 +18,36 @@ class Solution {
 public:
     Node* copyRandomList(Node* head) {
         if(head == NULL)return NULL;
-
-        Node* temp = head;
         unordered_map<Node* , Node*>map;
 
-        Node* n_head = new Node(head->val);
-        map[head] = n_head;
-        temp = temp->next;
+        
+        Node* n_h = new Node(head->val);
+        map[head] = n_h;
 
-        Node* n_temp = n_head;
+        Node* t = head->next;
+        Node* nt = n_h;
 
-        while(temp){
-            Node* x= new Node(temp->val);
-            n_temp->next = x;
+        while(t){
+            nt->next = new Node(t->val);
+            nt = nt->next;
             
-            n_temp = n_temp->next;
-            map[temp] = n_temp;
-
-            temp = temp->next;
+            map[t] = nt;
+            t = t->next;
         }
 
-        n_temp = n_head;
-        temp = head;
-        while(temp){
-            Node* x = temp->random;
+        t = head;
+        nt = n_h;
+
+        while(t){
+            Node* x = t->random;
             if(map.find(x) != map.end()){
-                //cout<<x->val<<" ";
-                n_temp->random = map[x];
+                nt->random = map[x];
             }
-
-            n_temp = n_temp->next;
-            temp = temp->next;
-        }
-        for(auto i : map){
-            cout<<i.first <<" "<<i.second<<"\n";
+            t=t->next;
+            nt = nt->next;
         }
 
-        return n_head;
+        return n_h;
+
     }
 };
