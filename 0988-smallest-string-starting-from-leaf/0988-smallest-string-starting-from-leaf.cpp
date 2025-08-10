@@ -11,33 +11,31 @@
  */
 class Solution {
 public:
-void helper(TreeNode* root , string& res , string curr){
-    if(root == NULL){
-        return ;
-    }   
-    curr += (char)root->val + 'a';
 
+void helper(TreeNode* root , string &s , string curr){
 
-    if(root->left == NULL && root->right == NULL){
-        reverse(curr.begin(), curr.end());
+    if(root == NULL)return;
 
-        if(res.empty() || curr < res)
-            res = curr;
+    curr = curr+ char(root->val+'a');
 
+    if(!root->left && !root->right){
+        reverse(curr.begin() , curr.end());
+
+        if(s.empty() || s> curr){
+            s = curr;
+        }
     }
-    helper(root->left , res , curr);
-    helper(root->right , res , curr);
+
+    helper(root->left , s , curr);
+    helper(root->right , s , curr);
 
 }
     string smallestFromLeaf(TreeNode* root) {
-      
-        string res;
-          if(root== NULL){
-            return res;
-        }
+        string s;
+        string curr;
+        if(root == NULL)return s;
 
-        helper(root , res , "");
-        
-        return res;
+        helper(root , s , curr);
+        return s;
     }
 };
