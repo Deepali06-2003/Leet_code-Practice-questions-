@@ -11,7 +11,6 @@
  */
 class Solution {
 public:
-
     unordered_map<long, int> map;
     int count = 0;
     
@@ -33,5 +32,4 @@ public:
         countPathSum(root, targetSum, 0);
         return count;
     }
-
 };
