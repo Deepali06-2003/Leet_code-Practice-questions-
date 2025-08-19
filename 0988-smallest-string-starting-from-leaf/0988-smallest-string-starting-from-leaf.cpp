@@ -11,24 +11,17 @@
  */
 class Solution {
 public:
-
-void helper(TreeNode* root , string &s , string curr){
-
+void helper(TreeNode* root , string& s , string curr){
     if(root == NULL)return;
 
-    curr = curr+ char(root->val+'a');
-
+    curr = curr + char(root->val + 'a');
     if(!root->left && !root->right){
-        reverse(curr.begin() , curr.end());
-
-        if(s.empty() || s> curr){
-            s = curr;
-        }
+        reverse(curr.begin(), curr.end());
+        if(s>curr || s.empty())s = curr;
     }
 
     helper(root->left , s , curr);
-    helper(root->right , s , curr);
-
+    helper(root->right ,s , curr);
 }
     string smallestFromLeaf(TreeNode* root) {
         string s;
@@ -36,6 +29,8 @@ void helper(TreeNode* root , string &s , string curr){
         if(root == NULL)return s;
 
         helper(root , s , curr);
+
         return s;
+
     }
 };
