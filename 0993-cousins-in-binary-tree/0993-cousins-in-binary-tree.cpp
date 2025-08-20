@@ -12,32 +12,33 @@
 class Solution {
 public:
     bool isCousins(TreeNode* root, int x, int y) {
-        if (!root) return false;
+        if(root == NULL)return false;
 
-        queue<pair<TreeNode*, TreeNode*>> q; // {node, parent}
-        q.push({root, nullptr});
+        queue<pair<TreeNode* , TreeNode*>>q;
+        q.push({root , NULL});
 
-        while (!q.empty()) {
-            int size = q.size();
-            TreeNode* parentX = nullptr;
-            TreeNode* parentY = nullptr;
+        while(!q.empty()){
 
-            for (int i = 0; i < size; i++) {
-                auto [node, parent] = q.front();
+            TreeNode* px = NULL;
+            TreeNode* py = NULL;
+
+            int s = q.size();
+
+            for(int i =0;i<s;i++){
+                auto [node , parent] = q.front();
                 q.pop();
-                
-                if (node->val == x) parentX = parent;
-                if (node->val == y) parentY = parent;
 
-                if (node->left) q.push({node->left, node});
-                if (node->right) q.push({node->right, node});
+                if(node->val == x) px = parent;
+                if(node->val == y) py = parent;
+
+                if(node->left) q.push({node->left , node});
+                if(node->right) q.push({node->right , node});
             }
 
-            // after processing one level
-            if (parentX && parentY) return parentX != parentY; 
-            if (parentX || parentY) return false; // found one but not the other
-        }
+            if(px && py)return px != py;
 
+            if(px || py)return false;
+        }
         return false;
     }
 };
