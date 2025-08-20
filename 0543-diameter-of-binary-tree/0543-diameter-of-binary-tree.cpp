@@ -11,25 +11,23 @@
  */
 class Solution {
 public:
-int diameter =0;
-int helper(TreeNode* root){
-    if(root == NULL){
-        return 0;
-    }
+int helper(TreeNode* root , int& ans){
+    if(root == NULL)return 0;
+
+    int lh = helper(root->left , ans);
+    int rh = helper(root->right , ans);
+
+    ans = max(lh+rh , ans);
+
+    return max(lh , rh)+1;
     
-    int lh = helper(root->left ) ;
-    int rh = helper(root->right);
-    diameter = max(lh+rh , diameter);
-
-    return 1+ max(lh , rh);
-
 }
     int diameterOfBinaryTree(TreeNode* root) {
-        if(root == NULL){
-            return 0;
-        }
+        if(root == NULL)return 0;
         
-         helper(root);
-         return diameter;
+        int ans = INT_MIN;
+        helper(root , ans);
+
+        return ans;
     }
 };
