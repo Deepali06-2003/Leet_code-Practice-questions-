@@ -11,24 +11,32 @@
  */
 class Solution {
 public:
-int helper(TreeNode* root , int a , int& ans){
-    if(root == NULL)return 0;
-
-    if(root->val == a)return ans;
-    
-    int lh = helper(root->left , a , ans);
-    int rh = helper(root->right , a , ans);
-
-    return max(lh, rh)+1;
-}
     bool isCousins(TreeNode* root, int x, int y) {
-        if(root == NULL)return false;
+        if (!root) return false;
 
-        int ans1 = 0 , ans2 =0;
-        ans1= helper(root , x, ans1);
-        ans2 = helper(root , y , ans2);
+        queue<pair<TreeNode*, TreeNode*>> q; // {node, parent}
+        q.push({root, nullptr});
 
-        if(ans1 == ans2)return true;
+        while (!q.empty()) {
+            int size = q.size();
+            TreeNode* parentX = nullptr;
+            TreeNode* parentY = nullptr;
+
+            for (int i = 0; i < size; i++) {
+                auto [node, parent] = q.front();
+                q.pop();
+                
+                if (node->val == x) parentX = parent;
+                if (node->val == y) parentY = parent;
+
+                if (node->left) q.push({node->left, node});
+                if (node->right) q.push({node->right, node});
+            }
+
+            // after processing one level
+            if (parentX && parentY) return parentX != parentY; 
+            if (parentX || parentY) return false; // found one but not the other
+        }
 
         return false;
     }
