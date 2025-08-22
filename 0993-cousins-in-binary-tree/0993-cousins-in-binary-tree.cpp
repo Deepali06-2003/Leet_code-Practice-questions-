@@ -19,12 +19,12 @@ public:
 
         while(!q.empty()){
 
+            int size = q.size();
             TreeNode* px = NULL;
             TreeNode* py = NULL;
 
-            int s = q.size();
+            for(int i=0;i<size;i++){
 
-            for(int i =0;i<s;i++){
                 auto [node , parent] = q.front();
                 q.pop();
 
@@ -34,10 +34,8 @@ public:
                 if(node->left) q.push({node->left , node});
                 if(node->right) q.push({node->right , node});
             }
-
-            if(px && py)return px != py;
-
-            if(px || py)return false;
+            if(px && py) return px != py;
+            if(px || py) return false;
         }
         return false;
     }
