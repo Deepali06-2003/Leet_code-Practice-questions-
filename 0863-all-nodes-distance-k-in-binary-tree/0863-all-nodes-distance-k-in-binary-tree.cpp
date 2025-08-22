@@ -10,56 +10,73 @@
 class Solution {
 public:
     vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
-        unordered_map<TreeNode*, TreeNode*> parent; 
-        queue<TreeNode*> q;
+        
+        unordered_map<TreeNode* , TreeNode*>map;
+        queue<TreeNode*>q;
+
         q.push(root);
 
-        // Step 1: store parents
-        while (!q.empty()) {
-            TreeNode* node = q.front(); q.pop();
-            if (node->left) {
-                parent[node->left] = node;
-                q.push(node->left);
+        while(!q.empty()){
+
+            TreeNode* t = q.front();
+            q.pop();
+
+            if(t->left){
+                q.push(t->left);
+                map[t->left] = t;
             }
-            if (node->right) {
-                parent[node->right] = node;
-                q.push(node->right);
+
+            if(t->right){
+                q.push(t->right);
+                map[t->right] = t;
             }
         }
 
-        // Step 2: BFS from target
+
         unordered_set<TreeNode*> visited;
+
         q.push(target);
         visited.insert(target);
-        int dist = 0;
 
-        while (!q.empty()) {
+        int dist =0;
+
+        while(!q.empty()){
             int size = q.size();
-            if (dist == k) break;
+
+            if(dist == k)break;
+
             dist++;
-            for (int i = 0; i < size; i++) {
-                TreeNode* node = q.front(); q.pop();
-                if (node->left && !visited.count(node->left)) {
-                    visited.insert(node->left);
-                    q.push(node->left);
+
+            for(int i =0;i<size;i++){
+                TreeNode* t = q.front();
+                q.pop();
+
+                if(t->left && !visited.count(t->left)){
+                    q.push(t->left);
+                    visited.insert(t->left);
                 }
-                if (node->right && !visited.count(node->right)) {
-                    visited.insert(node->right);
-                    q.push(node->right);
+
+                if(t->right && !visited.count(t->right)){
+                    q.push(t->right);
+                    visited.insert(t->right);
                 }
-                if (parent.count(node) && !visited.count(parent[node])) {
-                    visited.insert(parent[node]);
-                    q.push(parent[node]);
+
+                if(map.count(t) && !visited.count(map[t])){
+                    q.push(map[t]);
+                    visited.insert(map[t]);
                 }
             }
+
         }
 
-        // Collect result
-        vector<int> ans;
-        while (!q.empty()) {
-            ans.push_back(q.front()->val);
+        vector<int>res;
+
+        while(!q.empty()){
+            res.push_back(q.front()->val);
             q.pop();
         }
-        return ans;
+
+        return res;
+
     }
 };
