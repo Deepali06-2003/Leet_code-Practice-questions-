@@ -19,32 +19,32 @@ public:
 class Solution {
 public:
 Node* helper(Node* root){
-    if(root== NULL) return NULL;
+    if(root == NULL)return NULL;
 
     queue<Node*>q;
     q.push(root);
+
     while(!q.empty()){
-        int level = q.size();
+        int s = q.size();
         Node* prev = NULL;
-        for(int i =0;i<level;i++){
+
+        for(int i =0;i<s;i++){
             Node* curr = q.front();
             q.pop();
-            if(prev){
-                prev->next = curr;
-            }
+
+            if(prev) prev->next = curr;
             prev = curr;
 
             if(curr->left) q.push(curr->left);
             if(curr->right) q.push(curr->right);
         }
         prev->next = NULL;
-        
     }
     return root;
-    
 }
     Node* connect(Node* root) {
-        if(root ==NULL) return NULL;
+        if(root == NULL)return NULL;
+
         helper(root);
         return root;
     }
