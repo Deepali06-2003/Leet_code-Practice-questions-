@@ -7,11 +7,9 @@ int solve(vector<int>& nums , int l , int h){
     int i = nums[l] - solve(nums , l+1 , h);
     int j = nums[h] - solve(nums , l , h-1);
 
-    return max(i, j);
+    return max(i , j);
 }
     bool predictTheWinner(vector<int>& nums) {
-        int n = nums.size();
-
-        return solve(nums , 0 , n-1)>= 0;
+        return solve(nums , 0 , nums.size()-1) >=0;
     }
 };
