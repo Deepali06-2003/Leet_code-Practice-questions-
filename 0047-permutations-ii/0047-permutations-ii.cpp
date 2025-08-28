@@ -9,9 +9,9 @@ void helper(vector<int>& nums ,vector<int>& curr , vector<vector<int>>& res , in
     for(int i = 0;i<nums.size();i++){
         if (used[i]) continue;
             // skip duplicates: only use the first occurrence of duplicate numbers in this position
-        if (i > 0 && nums[i] == nums[i-1] && !used[i-1]) continue;
+        if (i > 0 && nums[i] == nums[i-1] && used[i-1] == true) continue;
 
-        
+
         used[i] = true;
         curr.push_back(nums[i]);
         helper(nums , curr , res , i+1 , used);
