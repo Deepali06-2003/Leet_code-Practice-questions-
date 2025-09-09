@@ -1,28 +1,26 @@
 class Solution {
 public:
-    void helper(int k, int n, int x, int s, vector<int>& curr,
-                vector<vector<int>>& res) {
-
-        if (s == 0) {
-            if (curr.size() == k) {
-                res.push_back(curr);
-            }
-            return;
+void helper(int k , int n , vector<vector<int>>& res , vector<int>& curr , int curr_s , int x){
+    if(curr_s == 0){
+        if(k == curr.size()){
+            res.push_back(curr);
         }
-
-        for (int i = x; i <= 9; i++) {
-            if (i > s)
-                break;
-            curr.push_back(i);
-            helper(k, n, i + 1, s - i, curr, res);
-            curr.pop_back();
-        }
+        return;
     }
-    vector<vector<int>> combinationSum3(int k, int n) {
-        vector<int> curr;
-        vector<vector<int>> res;
 
-        helper(k, n, 1, n, curr, res);
+    for(int i =x;i<=9 ;i++){
+        if(i> curr_s)break;
+
+        curr.push_back(i);
+        helper(k , n , res , curr , curr_s - i , i+1);
+        curr.pop_back();
+    }
+}
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>>res;
+        vector<int>curr;
+
+        helper(k , n , res , curr , n , 1);
         return res;
     }
 };
