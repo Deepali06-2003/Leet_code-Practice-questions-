@@ -10,7 +10,7 @@ public:
 
             if(mp.count(nx))return {mp[nx], i};
 
-            mp[nx]=i;
+            mp[nums[i]]=i;
         }
         return {-1, -1};
     }
