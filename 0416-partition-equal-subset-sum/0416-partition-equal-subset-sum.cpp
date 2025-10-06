@@ -1,7 +1,6 @@
 class Solution {
 public:
     bool canPartition(vector<int>& nums) {
-        
         int sum= 0;
         for(int i =0;i<nums.size();i++){
             sum = sum+nums[i];
@@ -26,7 +25,5 @@ public:
         }
 
         return dp[n][sum/2];
-
-
     }
 };
