@@ -7,13 +7,12 @@ public:
         while(l<h){
             int m = (l+h)/2;
 
-            if(nums[m] >nums[h]){
+            if(nums[m]> nums[h]){
                 l = m+1;
             }
             else{
                 h = m;
             }
-        }
-        return nums[h];
+        }return nums[l];
     }
 };
