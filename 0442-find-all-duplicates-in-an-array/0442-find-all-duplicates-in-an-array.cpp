@@ -1,24 +1,22 @@
 class Solution {
 public:
     vector<int> findDuplicates(vector<int>& nums) {
-        int i =0;
-        while(i<nums.size()){
-            int c = nums[i]-1;
-            if(nums[i] != nums[c]){
-                swap(nums[i] , nums[c]);
-            }
-            else{
-                i++;
-            }
-        }
         vector<int>res;
-        for(int j =0;j<nums.size(); j++){
+
+        int n = nums.size();
+        int i=0;
+
+        while(i<n){
+            int curr = nums[i]-1;
+
+            if(nums[i]<= n && nums[i]!=nums[curr])swap(nums[i] , nums[curr]);
+            else i++;
+        }
+
+        for(int j=0;j<n;j++){
             if(nums[j] != j+1){
                 res.push_back(nums[j]);
-                //res.push_back(j+1);
-                
             }
-        }
-        return res;
+        }return res;
     }
 };
