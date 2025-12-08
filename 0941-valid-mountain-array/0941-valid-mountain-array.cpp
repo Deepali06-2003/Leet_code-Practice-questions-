@@ -1,23 +1,19 @@
 class Solution {
 public:
     bool validMountainArray(vector<int>& arr) {
+if(arr.size()<3) return false;
+int i=1;
+int j=0;
+while(i<arr.size() && arr[i]>arr[j]){
+i++;j++;
+}
+if(i==1 || i>=arr.size()) return false;
 
-        if(arr.size()<3)return false;
-
-        int i =0;
-        while( i < arr.size() && ( arr[i] < arr[i+1] ) ){
-                i++;
-        }
-        if(i ==0 || i == arr.size()-1)return false;
-
-        for(int x = i+1 ; x<arr.size() ;x++){
-            if(arr[x] >= arr[x-1])return false;
-        }
-
-        //cout<<i;
-        return true;
-
-    };
+while(i<arr.size() && arr[i]<arr[j]){
+i++;j++;
+}
+return i==arr.size();
+}
 };
 
 
