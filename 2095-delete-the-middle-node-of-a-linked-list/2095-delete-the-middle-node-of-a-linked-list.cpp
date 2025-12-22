@@ -14,8 +14,8 @@ public:
         if(head->next == NULL || head== NULL){
             return NULL;
         }
-        ListNode* prev=NULL;
-        ListNode* s=head;
+        ListNode* prev = NULL;
+        ListNode* s = head;
         ListNode* f = head;
 
         while(f!=NULL && f->next != NULL){
