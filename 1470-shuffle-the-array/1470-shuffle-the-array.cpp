@@ -7,9 +7,8 @@ public:
        int i =0;
        for(int j =0;j<n;j++){
         ans[i] = nums[j];
-        i++;
-        ans[i] = nums[j+n];
-        i++;
+        ans[i+1] = nums[j+n];
+        i=i+2;
        }
         
         return ans;
