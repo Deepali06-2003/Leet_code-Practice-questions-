@@ -1,13 +1,14 @@
 class Solution {
 public:
     bool checkIfPangram(string sentence) {
-        vector<int>arr(26,0);
+        unordered_set<char>set;
 
         for(char c: sentence){
-            arr[c-'a']++;
+            if(set.find(c) != set.end())continue;
+            else set.insert(c);
         }
-        for(int i =0;i<26;i++){
-            if(arr[i]<=0)return false;
-        }return true;
+
+        if(set.size() == 26)return true;
+        return false;
     }
 };
