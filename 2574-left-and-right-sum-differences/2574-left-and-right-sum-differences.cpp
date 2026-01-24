@@ -3,20 +3,22 @@ public:
     vector<int> leftRightDifference(vector<int>& nums) {
         
         int n = nums.size();
+        vector<int>res(n, 0);
+        
+       int s=0;
+       for(int i=0;i<n;i++)s= s+nums[i];
 
-        vector<int>pre(n, 0);
-        vector<int>post(n , 0);
-
-        for(int i =1;i<n;i++){
-            pre[i] = pre[i-1]+nums[i-1];
-        }
-        for(int i = n-2;i>=0;i--){
-            post[i] = post[i+1]+nums[i+1];
-        }
-
+        int ls=0, rs=0;
         for(int i =0;i<n;i++){
-            nums[i] = abs(pre[i] - post[i]);
+            rs = s- nums[i]-ls;
+            res[i] = abs(ls-rs);
+
+            ls = ls+nums[i];
+            
         }
-        return nums;
+        
+
+        
+        return res;
     }
 };
