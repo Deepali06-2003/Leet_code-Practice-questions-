@@ -4,12 +4,14 @@ public:
         
         int n = nums.size();
 
-        int c=0 , j =1;
-        while(j<n){
-            for(int i =0 ;i<j;i++){
-                if(nums[i] == nums[j])c++;
-            }
-            j++;
-        }return c;
+        int c=0 ;
+
+        unordered_map<int, int>map;
+
+        for(int i : nums){
+            c = c + map[i];
+            map[i]++;
+        }
+        return c;
     }
 };
