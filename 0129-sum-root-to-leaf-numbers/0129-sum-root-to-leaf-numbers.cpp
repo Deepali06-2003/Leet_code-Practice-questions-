@@ -11,25 +11,21 @@
  */
 class Solution {
 public:
-
-int ans=0;
-
-void helper(TreeNode* root, int s){
+void helper(TreeNode* root , int& ans, int curr){
     if(root == NULL)return;
-
-    s = s*10 + root->val;
-
-    if(root->left == NULL && root->right == NULL)ans = ans+s;
-
-    helper(root->left, s);
-    helper(root->right,s);
+    
+    curr = curr*10 + root->val;
+    if(root->left == NULL && root->right == NULL){
+        ans = ans+curr;
+        return;
+    }
+    helper(root->left , ans , curr);
+    helper(root->right , ans , curr);
 }
+
     int sumNumbers(TreeNode* root) {
-        if(root == NULL)return 0;
-
-        int s=0 , x=0;
-        helper(root , s);
-
+        int ans =0;
+        helper(root , ans, 0);
         return ans;
     }
 };
