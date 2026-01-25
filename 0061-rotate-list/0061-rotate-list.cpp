@@ -14,33 +14,32 @@ public:
         ListNode* s = head;
         ListNode* f = head;
 
-        if(k == 0 || head== NULL)return head;
-
-        int c=0;
-        while(f != NULL){
+        if(head == NULL || k==0)return head;
+       
+       int c=0;
+        while(f!=NULL){
             c++;
-            f =f->next;
+            f = f->next;
         }
-
-        k = k%c;
-        if(k==c || k==0)return head;
 
         f = head;
+        k = k%c;
+        if(k==0 || k ==c)return head;
+
         while(k!=0){
-            f = f->next;
+            f=f->next;
             k--;
         }
+
         while(f->next != NULL){
             s= s->next;
-            f = f->next;
-        }
+            f = f->next; 
+        }   
 
         ListNode* t = s->next;
         s->next = NULL;
         f->next = head;
-        head = t;
 
-        return head;
-
+        return t;
     }
 };
