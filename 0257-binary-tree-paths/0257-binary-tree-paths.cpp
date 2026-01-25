@@ -11,31 +11,25 @@
  */
 class Solution {
 public:
-void helper(TreeNode* root ,vector<string>& res,string curr){
-    if(root==NULL)return;
+void helper(TreeNode* root , vector<string>&res , string curr){
+    if(root == NULL)return;
 
     if(!curr.empty()){
-        curr = curr + "->";
+        curr = curr+ "->";
     }
-    curr = curr+ to_string(root->val);
+    curr = curr + to_string(root->val);
     if(root->left == NULL && root->right == NULL){
         res.push_back(curr);
-
-        
-        
+        return;
     }
     helper(root->left , res , curr);
-    helper(root->right, res , curr);
-
+    helper(root->right , res , curr);
 }
     vector<string> binaryTreePaths(TreeNode* root) {
         vector<string>res;
         string curr;
 
-        if(root==NULL)return res;
-
         helper(root , res , curr);
-
         return res;
     }
 };
