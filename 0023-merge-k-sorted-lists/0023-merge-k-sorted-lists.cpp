@@ -10,41 +10,46 @@
  */
 class Solution {
 public:
-
-ListNode* merge(ListNode* l1 , ListNode* l2){
-
-    ListNode* t_h = new ListNode(0);
-    ListNode* t = t_h;
-
-    while(l1 != NULL && l2 != NULL){
+ListNode* mergell(ListNode*l1 , ListNode* l2){
+    ListNode* lhead = new ListNode(0);
+    ListNode* l3= lhead;
+    while(l1!=NULL && l2!= NULL){
         if(l1->val <= l2->val){
-            t->next = l1;
-            l1 = l1->next;
-            t = t->next;
+            l3->next = l1;
+            l1= l1->next;
         }
         else{
-            t->next = l2;
-            l2 = l2->next;
-            t = t->next;
+            l3->next = l2;
+            l2= l2->next;
         }
+        l3= l3->next;
     }
-    if(l1 != NULL){
-        t->next = l1;
+    while(l1!=NULL){
+        l3->next = l1;
+            l1= l1->next;
+            l3= l3->next;
     }
-    if(l2 != NULL){
-        t->next = l2;
+    while(l2!=NULL){
+        l3->next = l2;
+            l2= l2->next;
+            l3= l3->next;
     }
-    return t_h->next;
+
+    return lhead->next;
 }
-
-
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        if(lists.empty())return NULL;
-        
-        ListNode* r = lists[0];
-        for(int i =1;i<lists.size();i++){
-            r = merge(r, lists[i]);
+        if(lists.empty()){
+            return NULL;
         }
-        return r;
+        ListNode* h= lists[0];
+
+        for(int i =1;i<lists.size(); i++){
+            h = mergell(h , lists[i]);
+        }
+
+        return h;
+
+
+        
     }
 };
