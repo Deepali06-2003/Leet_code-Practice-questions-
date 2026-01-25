@@ -11,22 +11,17 @@
  */
 class Solution {
 public:
-int s=0;
-void helper(TreeNode* root){
-    if(root == NULL)return ;
+void helper(TreeNode* root , int & ans){
+    if(root == NULL)return;
 
-    if(root->left && root->left->left == NULL && root->left->right == NULL){
-        s = s+ root->left->val;
-    } 
-    helper(root->left);
-    helper(root->right);
+    helper(root->left , ans);
+    if(root->left!=NULL && root->left->left==NULL && root->left->right ==NULL)ans = ans + root->left->val;
+    helper(root->right , ans);
+
 }
     int sumOfLeftLeaves(TreeNode* root) {
-        if(root == NULL)return 0;
-
-        
-        helper(root);
-        return s;
-
+        int ans =0;
+        helper(root , ans);
+        return ans;
     }
 };
