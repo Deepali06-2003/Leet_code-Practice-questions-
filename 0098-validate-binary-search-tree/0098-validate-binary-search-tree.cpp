@@ -11,26 +11,29 @@
  */
 class Solution {
 public:
-int max_ele(TreeNode* root){
-    if(!root) return INT_MIN;
-    return max(root->val , max_ele(root->right));
-}
 
-int min_ele(TreeNode* root){
-    if(!root)return INT_MAX;
-    return min(root->val , min_ele(root->left));
+
+int max_ele(TreeNode* root , int max_el){
+    if(root == NULL)return max_el;
+    max_el = max(max_el , root->val);
+    return max_ele(root->right , max_el);
+}
+int min_ele(TreeNode* root, int min_el){
+    if(root == NULL)return min_el;
+
+    min_el = min(min_el , root->val);
+    return min_ele(root->left , min_el);
 }
     bool isValidBST(TreeNode* root) {
-        if(root == NULL)return true;
+        if(root == NULL || (root->left == NULL && root->right == NULL))return true;
 
         if(root->left){
-            int maxL = max_ele(root->left);
-            if(maxL >= root->val)return false;
+            int rl = max_ele(root->left, INT_MIN);
+            if(rl >= root->val)return false;
         }
-
         if(root->right){
-            int minR = min_ele(root->right);
-            if(minR <= root->val)return false;
+            int rr = min_ele(root->right, INT_MAX);
+            if(rr <= root->val)return false;
         }
 
         return isValidBST(root->left) && isValidBST(root->right);
