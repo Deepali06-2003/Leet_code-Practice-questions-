@@ -11,32 +11,27 @@
  */
 class Solution {
 public:
+TreeNode* helper(vector<int>& inorder , int in_s , int in_e , vector<int>& postorder , int pos_s , int pos_e){
 
-TreeNode* helper(vector<int>& inorder, int is , int ie ,vector<int>& postorder , int ps , int pe){
-
-    if(is> ie || ps> pe)return NULL;
-
-    TreeNode* root = new TreeNode(postorder[pe]);
-
-    int root_index = is;
-    while(root_index <= ie && root->val != inorder[root_index] ){
-        root_index++;
+    if(in_s > in_e || pos_s > pos_e){
+        return NULL;
     }
 
-    int left_size = root_index - is;
+    TreeNode* root = new TreeNode(postorder[pos_e]);
 
+    int root_index = in_s;
+    while(root_index <= in_e && inorder[root_index] != root->val){
+        root_index+= 1;
+    }
+    int left_size = root_index - in_s;
 
-    root->left = helper(inorder , is , root_index-1 , postorder , ps , ps+left_size-1); 
-    root->right = helper(inorder , root_index+1 , ie , postorder , ps+ left_size , pe-1);
+    root->left = helper(inorder , in_s , root_index-1 , postorder , pos_s, pos_s+left_size-1);
 
+    root->right = helper(inorder , root_index+1 , in_e , postorder , pos_s+left_size , pos_e-1);
 
     return root;
 }
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
-        if(inorder.size()==0)return NULL;
-
-        TreeNode* root = helper(inorder , 0 , inorder.size()-1 , postorder , 0 , postorder.size()-1);
-
-        return root;
+        return helper(inorder , 0 , inorder.size()-1 , postorder , 0 , postorder.size()-1);
     }
 };
