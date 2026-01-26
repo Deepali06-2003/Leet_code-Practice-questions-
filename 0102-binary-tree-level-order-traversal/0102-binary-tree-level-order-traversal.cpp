@@ -17,12 +17,14 @@ void helper(TreeNode* root , vector<vector<int>>&res , vector<int>&curr){
     queue<TreeNode*>q;
     q.push(root);
 
-    while(!q.empty()){
+    while(! q.empty()){
         int l = q.size();
         curr.clear();
-        for(int i =0 ;i<l;i++){
+        for(int i =0;i<l ;i++){
+
             TreeNode* c = q.front();
             q.pop();
+
             curr.push_back(c->val);
             if(c->left) q.push(c->left);
             if(c->right) q.push(c->right);
@@ -31,11 +33,12 @@ void helper(TreeNode* root , vector<vector<int>>&res , vector<int>&curr){
     }
 }
     vector<vector<int>> levelOrder(TreeNode* root) {
-         vector<vector<int>>res;
-         vector<int>curr;
+        vector<vector<int>>res;
+        vector<int>curr;
 
-         helper(root ,res , curr);
+        if(root == NULL)return res;
+        helper(root , res , curr);
 
-         return res;
+        return res;
     }
 };
