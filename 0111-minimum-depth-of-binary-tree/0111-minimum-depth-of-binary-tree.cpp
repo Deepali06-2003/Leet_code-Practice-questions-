@@ -16,9 +16,7 @@ void helper(TreeNode* root , int &ans , int c){
         return;
         
     }
-    
-        c++;
-
+    c++;
     if(root->left == NULL && root->right == NULL){
         ans = min(c , ans);
         return;
@@ -31,11 +29,10 @@ void helper(TreeNode* root , int &ans , int c){
         if(root== NULL){
             return 0;
         }
-       // vector<int>res;
-       int ans =INT_MAX;
+
+        int ans =INT_MAX;
         helper(root , ans , 0);
 
-        //sort(res.begin(), res.end());
         return ans;
         
         
