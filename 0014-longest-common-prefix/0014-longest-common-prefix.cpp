@@ -1,13 +1,13 @@
 class Solution {
 public:
 string helper(string s1, string s2){
-    int i=0, j=0;
     int n = s1.size();
     int m = s2.size();
 
     if(s1.empty() || s2.empty())return "";
     
     string curr = "";
+    int i=0, j=0;
 
     while(i<n && j<m){
         if(s1[i]==s2[j]){
@@ -25,6 +25,8 @@ string helper(string s1, string s2){
 
         for(int i =1;i<strs.size();i++){
             ans= helper(ans, strs[i]);
+            
+            if(ans=="")return ans;
         }return ans;
     }
 };
