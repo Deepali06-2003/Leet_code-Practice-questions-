@@ -6,7 +6,7 @@ public:
 
         for(char i:s){
             if(i=='#'){
-                s1.pop();
+                if(!s1.empty())s1.pop();
             }else{
                 s1.push(i);
             }
@@ -14,7 +14,7 @@ public:
 
         for(char i:t){
             if(i=='#'){
-                s2.pop();
+                if(!s2.empty())s2.pop();
             }else{
                 s2.push(i);
             }
