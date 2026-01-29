@@ -4,18 +4,16 @@ public:
         
         if(s.size() != t.size())return false;
 
-        vector<int>arr(26,0);
+       unordered_map<char, int>map;
+       for(char c: s){
+        map[c]++;
+       }
 
-        for(char c: s){
-            arr[c-'a']++;
-        }
-        for(char c:t){
-            arr[c-'a']--;
-        }
+       for(char c:t)map[c]--;
 
-        for(int i =0;i<26;i++){
-            if(arr[i]!=0)return false;
-        }
-        return true;
+       for(int i =0;i<map.size();i++){
+        if(map[i]!=0)return false;
+       }
+               return true;
     }
 };
