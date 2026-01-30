@@ -4,10 +4,16 @@
 class Solution:
     def firstBadVersion(self, n: int) -> int:
         left, right = 1, n
-        while left < right:
+        ans=n
+
+        while left <= right:
+
             mid = left + (right - left) // 2
             if isBadVersion(mid):
-                right = mid  # first bad version is at or before mid
+                ans = mid
+                right = mid-1  # first bad version is at or before mid
+            
+            
             else:
                 left = mid + 1  # first bad version must be after mid
-        return left
+        return ans
