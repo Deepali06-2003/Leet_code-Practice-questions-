@@ -8,58 +8,53 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
- ListNode* reverse(ListNode* head){
-    //reverse list2 having head = headB.
-        ListNode* curr= head;
-        ListNode* prev = NULL;
-        ListNode* curr_n= NULL;
-
-        while(curr!= NULL){
-            curr_n = curr->next;
-            curr->next = prev;
-             prev = curr;
-             curr= curr_n;
-        }
-
-    return prev;
-
- }
 class Solution {
 public:
+
+ListNode* reverse(ListNode* head){
+    if(head==NULL || head->next==NULL)return head;
+
+    ListNode* prev= NULL;
+    ListNode* curr = head;
+    ListNode* n_c= NULL;
+
+    while(curr != NULL){
+       n_c= curr->next;
+       curr->next = prev;
+       prev = curr;
+       curr = n_c;
+    }return prev;
+}
+
+
     void reorderList(ListNode* head) {
-        if(head == NULL || head->next == NULL){
-            return ;
-        }
+        if(head==NULL || head->next==NULL || head->next->next==NULL)return;
 
-        ListNode* s = head;
-        ListNode* f= head;
+        ListNode* s= head;
+        ListNode* f=head;
+        ListNode* l1= head;
         
 
-        
-        while(f!= NULL && f->next != NULL){
-            s= s->next;
-            f= f->next ->next;
+        while(f!=NULL && f->next!=NULL){
+            s=s->next;
+            f= f->next->next;
         }
 
-        ListNode* headB =NULL;
-        headB= reverse(s->next);
+        ListNode* l2= s->next;
         s->next = NULL;
 
-        
+        l2= reverse(l2);
 
-        //merge lis1 (head == head)and list2(headB)
-        ListNode* curr1 = head;
-        ListNode* curr2 = headB;
-        while(curr2!=NULL){
-            ListNode* cn1 = curr1->next;
-            ListNode* cn2 = curr2->next;
+        while(l2!=NULL){
+            
+            ListNode* l1_n = l1->next;
+            ListNode* l2_n = l2->next;
 
-            curr1->next = curr2;
-            curr2->next = cn1;
+            l1->next = l2;
+            l2->next = l1_n;
 
-            curr1 = cn1;
-            curr2= cn2;
+            l1 = l1_n;
+            l2= l2_n;
         }
-
     }
 };
