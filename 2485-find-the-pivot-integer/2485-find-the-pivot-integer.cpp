@@ -4,26 +4,18 @@ public:
         if(n<=0)return -1;
         if(n==1)return 1;
 
-        vector<int>pre(n,0);
-        vector<int>post(n, 0);
-
-        for(int i =1;i<n;i++){
-            pre[i]= pre[i-1]+i;
-        }
-        for(int i =0;i<n;i++){
-            cout<<pre[i]<<' ';
-        }
-        cout<<endl;
-        
-        for(int i =n-2;i>=0;i--){
-            post[i]= post[i+1]+i+2;
-        }
-        for(int i =0;i<n;i++){
-            cout<<post[i]<<' ';
-        }
-
-        for(int i=0;i<n;i++){
-            if(pre[i]==post[i])return i+1;
+        int s = n * (n + 1) / 2;
+        int ls=0, rs=s;
+        for(int i =1;i<=n;i++){
+            if(i==1){
+                ls =0;
+                rs = s-i;
+            }
+            else{
+            ls = ls+ i-1;
+            rs = rs-i;
+            }
+            if(ls == rs)return i;
         }
         return -1;
     }
