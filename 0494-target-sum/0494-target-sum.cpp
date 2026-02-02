@@ -2,28 +2,24 @@ class Solution {
 public:
     int findTargetSumWays(vector<int>& nums, int target) {
         int n = nums.size();
+
+        int s=0;
+        for(int i=0;i<n;i++)s += nums[i];
         
-        int sum =0;
-        for(int i =0;i< n ;i++){
-            sum += nums[i];
-        }
+        if((s+target)<0 || ((s+target)%2 !=0))return 0;
 
-        if( (sum+ target )%2 !=0 || (sum+ target <0))return 0;
+        int x = (s+target)/2;
 
-        int ans = (sum+ target)/2;
-
-        vector<vector<unsigned long long >>dp (n+1 ,vector<unsigned long long>(ans+1 , 0));
-
-        for(int i =0;i<=n;i++)dp[i][0] = 1;
-
+        vector<vector<int>>dp(n+1, vector<int>(x+1, 0));
+        for(int i =0;i<=n;i++)dp[i][0]=1;
+        
         for(int i =1;i<=n;i++){
-            for(int j=0;j<=ans ;j++){
-                if(nums[i-1] > j)dp[i][j] = dp[i-1][j];
-
-                else dp[i][j] = dp[i-1][j] + dp[i-1][j- nums[i-1]];
+            for(int j =0;j<=x;j++){
+                if(nums[i-1]>j)dp[i][j]= dp[i-1][j];
+                else dp[i][j] = dp[i-1][j] + dp[i-1][j-nums[i-1]];
             }
-        }
+        }return dp[n][x];
 
-        return dp[n][ans];
+
     }
 };
