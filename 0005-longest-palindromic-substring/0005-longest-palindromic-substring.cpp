@@ -19,7 +19,7 @@ bool isPalindrome(string x, int l , int h){
             }return s.substr(l+1, h-l-1);
         };
 
-        string ans = s.substr(0,1);
+        string ans = "";
 
         for(int i =0;i<n-1;i++){
             
