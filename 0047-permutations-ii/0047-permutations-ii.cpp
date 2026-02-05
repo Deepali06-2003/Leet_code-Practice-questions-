@@ -1,32 +1,33 @@
 class Solution {
 public:
-void helper(vector<int>& nums ,vector<vector<int>>& res ,vector<int>& curr , vector<int>& used, int s){
-
+void helper(vector<int>& nums ,vector<int>& curr , vector<vector<int>>& res , int s, vector<bool>& used ){
     if(curr.size() == nums.size()){
         res.push_back(curr);
         return;
     }
+
     for(int i = 0;i<nums.size();i++){
-        if(used[i])continue;
-        if(i>0 && nums[i] == nums[i-1] && used[i-1])continue;
+        if (used[i]) continue;
+            // skip duplicates: only use the first occurrence of duplicate numbers in this position
+        if (i > 0 && nums[i] == nums[i-1] && !used[i-1]) continue;
 
+        
+        used[i] = true;
         curr.push_back(nums[i]);
-        used[i]=1;
-
-        helper(nums , res , curr , used , i+1);
-
+        helper(nums , curr , res , i+1 , used);
         curr.pop_back();
-        used[i] = 0;
+
+        used[i] = false;
     }
 }
     vector<vector<int>> permuteUnique(vector<int>& nums) {
-        int n = nums.size();
-sort(nums.begin() , nums.end());
-      vector<vector<int>>res;
-      vector<int>curr;
-      vector<int>used(n , 0);  
+        vector<int>curr;
+        vector<vector<int>>res;
 
-        helper(nums , res , curr , used , 0);
-      return res;
+        sort(nums.begin() , nums.end());
+
+        vector<bool>used(nums.size() , false);
+        helper(nums , curr, res , 0 , used);
+        return res;
     }
 };
