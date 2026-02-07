@@ -1,35 +1,25 @@
 class Solution {
 public:
-bool isPalindrome(string x, int l , int h){
-    while(l<h){
-        if(x[l]!=x[h])return false;
-        l++;
-        h--;
-    }return true;
+string helper(string& s, int l , int h){
+    while(l>=0 && h<s.size() && s[l]==s[h]){
+        l--;
+        h++;
+    }
+    return s.substr(l+1 , h-l-1);
 }
+
     string longestPalindrome(string s) {
-        int n = s.size();
+        string ans="";
+        if(s.size()<=1)return s;
 
-        if(n<=1)return s;
 
-        auto helper =[&](int l , int h){
-            while(l>=0 && h<n &&  (s[l]==s[h]) ){
-                l--;
-                h++;
-            }return s.substr(l+1, h-l-1);
-        };
 
-        string ans = "";
+        for(int i=0;i<s.size();i++){
+            string odd = helper(s, i, i);
+            string even = helper(s, i, i+1);
 
-        for(int i =0;i<n-1;i++){
-            
-                
-            string odd = helper(i,i);
-            string even = helper(i, i+1);
-
-            if(odd.size()>ans.size())ans = odd;
-            if(even.size()>ans.size())ans = even;
-            
+            if(odd.size()>ans.size()) ans = odd;
+            if(even.size() > ans.size())ans = even;
         }return ans;
     }
 };
