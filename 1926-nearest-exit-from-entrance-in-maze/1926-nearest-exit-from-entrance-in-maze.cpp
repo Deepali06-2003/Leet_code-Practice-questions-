@@ -3,40 +3,37 @@ public:
     int nearestExit(vector<vector<char>>& maze, vector<int>& entrance) {
         int n = maze.size();
         int m = maze[0].size();
+        int ans=0;
 
         queue<pair<int , int>>q;
-        int a = entrance[0];
-        int b = entrance[1];
-        maze[a][b] = '+';
-        q.push({a,b});
+        
+        q.push({entrance[0], entrance[1]}) ;
+        maze[entrance[0]][entrance[1]] = '+';
 
-        vector<int>dx = {0 , 0 , 1, -1};
-        vector<int>dy = {1 , -1 , 0 , 0};
-
-        int c=0;
+        vector<int>dx = {0, 0, 1, -1};
+        vector<int>dy = {1, -1, 0, 0};
 
         while(!q.empty()){
-            int l = q.size();
-            for(int i =0;i<l ;i++){
 
-                pair<int,int>t = q.front();
+            int s = q.size();
+            for(int i=0;i<s;i++){
+
+                pair<int, int>temp = q.front();
                 q.pop();
-                int x = t.first;
-                int y = t.second;
-
+                
                 for(int j =0;j<4;j++){
-                    int nx = x + dx[j];
-                    int ny = y+ dy[j];
+                    int nx = dx[j]+temp.first;
+                    int ny = dy[j]+temp.second;
 
-                    if(nx>=0 && nx<n && ny>=0 && ny<m && maze[nx][ny] == '.'){
-                        q.push({nx , ny});
-                        maze[nx][ny] ='+';
-                        if(nx==0 || nx==n-1 || ny==0 || ny==m-1)return c+1;
+                    if(nx>=0 && nx<n && ny>=0 && ny<m && maze[nx][ny]=='.'){
+                        maze[nx][ny]='+';
+                        q.push({nx, ny});
+
+                        if(nx ==0 || nx== n-1 || ny==0 || ny==m-1)return ans+1;
                     }
                 }
-            }c++;
-        }
-        return -1;
+            }ans++;
+        }return -1;
 
     }
 };
