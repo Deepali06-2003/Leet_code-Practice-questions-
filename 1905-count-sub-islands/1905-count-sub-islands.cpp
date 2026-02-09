@@ -3,16 +3,16 @@ public:
 
 void dfs(vector<vector<int>>& grid1, vector<vector<int>>& grid2 , int i , int j , int n , int m, bool& isIland){
 
-    if(i<0 || j<0 || i>=n || j>=m || grid2[i][j]!=1)return;
+    if(i<0 || i>= n || j<0 || j>=m || grid2[i][j]==0 )return;
+    if( grid1[i][j]!=1)isIland =false;
 
-    if(grid1[i][j] == 0)isIland = false;
+    grid2[i][j]= grid1[i][j]=0;
 
-    grid1[i][j] = grid2[i][j] =0;
+    dfs(grid1 , grid2 , i+1, j, n , m , isIland);
+    dfs(grid1 , grid2 , i-1, j, n , m , isIland);
+    dfs(grid1 , grid2 , i, j+1, n , m , isIland);
+    dfs(grid1 , grid2 , i, j-1, n , m , isIland);
 
-    dfs(grid1 , grid2 , i+1 , j , n , m, isIland);
-    dfs(grid1 , grid2 , i-1 , j , n , m, isIland);
-    dfs(grid1 , grid2 , i , j+1 , n , m, isIland);
-    dfs(grid1 , grid2 , i , j-1 , n , m, isIland);
 
 }
     int countSubIslands(vector<vector<int>>& grid1, vector<vector<int>>& grid2) {
