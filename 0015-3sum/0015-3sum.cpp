@@ -5,10 +5,10 @@ public:
         vector<vector<int>>res;
         sort(nums.begin(), nums.end());
 
-        for(int i=0;i<n;i++){
+        for(int i=0;i<n-2;i++){
             if(i>0 && nums[i]==nums[i-1])continue;
             
-            int j =i, k = n-1;
+            int j =i+1, k = n-1;
             int x = -nums[i];
             while(j<k){
                 if((nums[j]+nums[k])==x){
