@@ -12,14 +12,19 @@ public:
         
         vector<int>s2_f(26,0);
 
-        for (int i = 0; i < m; i++) {
-            s2_f[s2[i] - 'a']++;
+        int i=0, j=0;
+        while(j<m){
 
-        if (i >= n) {
-            s2_f[s2[i - n] - 'a']--;
-        }
+            s2_f[s2[j]-'a']++;
 
-        if (s1_f == s2_f) return true;
-        }   return false;
+            if((j-i+1)>n){
+                s2_f[s2[i]-'a']--;
+                i++;
+            }
+
+            if(s1_f == s2_f)return true;
+            j++;
+        }  
+        return false;
     }
 };
