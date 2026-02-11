@@ -1,20 +1,25 @@
 class Solution {
 public:
-double power(double x, long long n) {
-        if (n == 0) return 1.0;
-        if (n == 1) return x;
-        double half = power(x, n / 2);
-        if (n % 2 == 0) return half * half;
-        return half * half * x;
-    }
+double helper(double x,long long n){
+    if(n==0)return 1.0;
+    if(n==1)return x;
 
-       double myPow(double x, int n) {
-        long long N = n;          // prevent overflow on INT_MIN
-        if (N < 0) {
-            x = 1.0 / x;
-            N = -N;
+    double half = helper(x , n/2);
+    if(n%2==0)return half*half;
+    return half*half*x;
+}
+    double myPow(double x, int n) {
+        long long N = n;
+        if(n==0)return 1.0;
+        if(n==1)return x;
+
+        if(N<0){
+            N= -N;
+            x = 1.0/x;
+            return helper(x , N);
         }
-        return power(x, N);
+        
+            return helper(x, N);
+        
     }
-    
 };
