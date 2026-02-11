@@ -4,19 +4,16 @@ public:
         stack<char>s1;
         stack<char>s2;
 
-        for(char i:s){
-            if(i=='#'){
+        for(char c:s){
+            if(c != '#')s1.push(c);
+            else{
                 if(!s1.empty())s1.pop();
-            }else{
-                s1.push(i);
             }
         }
-
-        for(char i:t){
-            if(i=='#'){
+        for(char c :t){
+            if(c!= '#')s2.push(c);
+            else{
                 if(!s2.empty())s2.pop();
-            }else{
-                s2.push(i);
             }
         }
 
