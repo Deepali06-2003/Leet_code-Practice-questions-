@@ -4,20 +4,25 @@ public:
         int n = nums.size();
         sort(nums.begin(), nums.end());
 
-        int ans= nums[0]+nums[1]+nums[2];
+        int ans = nums[0]+nums[1]+nums[2];
+
         for(int i=0;i<n-2;i++){
+
+            int j = i+1, k= n-1;
             
-            int j=i+1, k=n-1;
-
             while(j<k){
-                
-                int sum = nums[i]+nums[j]+nums[k];
-                if(abs(ans-target) > abs(sum-target))ans = sum;
+                long long s = nums[i];
+                s = s+ nums[j];
+                s= s+nums[k];
 
-                if(sum > target) k--;
-                else if(sum < target) j++;
-                else return sum;
+                if(abs(s-target) < abs(ans- target))ans = s;
+
+                else if(s==target)return s;
+                else if (s>target)k--;
+                else j++;
+
             }
-        }return ans;
+        }
+        return ans;
     }
 };
