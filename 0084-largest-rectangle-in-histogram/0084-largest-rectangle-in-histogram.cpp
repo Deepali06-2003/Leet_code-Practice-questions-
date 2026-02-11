@@ -1,34 +1,31 @@
 class Solution {
 public:
     int largestRectangleArea(vector<int>& heights) {
-        
-        int n = heights.size();
         stack<int>st;
-        int max_area =0;
-        
-        for(int i=0;i<n;i++){
-            //encountered a smaller element then the element
-            while(!st.empty() && heights[st.top()]> heights[i]){
-                int ele = st.top();
+        int n = heights.size();
+        int max_area=0;
+
+        for(int i=0;i<n-1;i++){
+            while(!st.empty() && heights[st.top()]>heights[i]){
+                int ele = heights[st.top()];
                 st.pop();
-                
-                int next_smaller = i;
-                int pre_smaller = st.empty() ? -1 : st.top();
 
-                max_area = max( max_area , heights[ele]*(next_smaller -1-pre_smaller) );
+                int next_smaller =i;
+                int prev_smaller = (st.empty())?-1 : st.top();
+
+                max_area = max (max_area , (next_smaller-prev_smaller-1)* ele );
             }
-            st.push(i);
 
+            st.push(i);
         }
         while(!st.empty()){
-            int ele = st.top();
+            int ele = heights[st.top()];
             st.pop();
 
-            int next_smaller = n;
-            int pre_smaller = st.empty() ? -1 : st.top();
-            max_area = max( max_area , heights[ele]*(next_smaller -1- pre_smaller) );
+            int next_smaller =n;
+            int prev_smaller = (st.empty())?-1 : st.top();
+            max_area = max (max_area , (next_smaller-prev_smaller-1)* ele );
         }
-
         return max_area;
     }
 };
