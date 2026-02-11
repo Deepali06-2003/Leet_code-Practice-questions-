@@ -9,11 +9,10 @@ public:
         }
 
         int ls=0, rs=0;
-        for(int i =0;i<n;i++){
-            rs = s- nums[i]- ls;
-            if(rs == ls)return i;
+        for(int i=0;i<nums.size();i++){
+            rs = s-(ls+nums[i]);
+            if(rs==ls)return i;
             ls = ls+nums[i];
-        }
-        return -1;
+        }return -1;
     }
 };
