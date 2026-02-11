@@ -5,7 +5,7 @@ public:
         int n = heights.size();
         int max_area=0;
 
-        for(int i=0;i<n-1;i++){
+        for(int i=0;i<n;i++){
             while(!st.empty() && heights[st.top()]>heights[i]){
                 int ele = heights[st.top()];
                 st.pop();
