@@ -11,21 +11,19 @@
  */
 class Solution {
 public:
-int helper(TreeNode* root, int & ans, int curr_ans){
-    if(root == NULL)return 0;
-
-    if(root->val >= curr_ans){
-        curr_ans = root->val;
+int helper(TreeNode* root , int & ans, int curr){
+    if(root == NULL)return ans;
+    if(root->val >= curr){
         ans++;
+        curr = root->val;
     }
 
-    return helper(root->left, ans, curr_ans) + helper(root->right, ans, curr_ans)+ans;
+    return helper(root->left , ans , curr) + helper(root->right, ans , curr)+ans;
 }
     int goodNodes(TreeNode* root) {
         if(root == NULL)return 0;
-        int ans=0;
-
-        helper(root, ans, INT_MIN);
-        return ans;
+        int ans =0;
+         helper(root , ans , INT_MIN);
+         return ans;
     }
 };
