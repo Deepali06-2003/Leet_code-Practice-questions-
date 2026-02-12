@@ -1,40 +1,34 @@
 class Solution {
 public:
+int helper(vector<int>& nums, int pages){
 
-bool canSplit(vector<int>& nums, int k, long long cap) {
-        long long cur = 0;
-        int parts = 1;
+    int s=1;
+    long long curr_s =0;
+    for(int i=0;i<nums.size();i++){
 
-        for (int x : nums) {
-            if (x > cap) return false;
-
-            if (cur + x > cap) {
-                parts++;
-                cur = x;
-            } else {
-                cur += x;
-            }
+        if((curr_s+nums[i])<=pages) curr_s = curr_s+nums[i];
+        else{
+            s= s+1;
+            curr_s = nums[i];
         }
-        return parts <= k;
     }
+    return s;
+}
+
     int splitArray(vector<int>& nums, int k) {
-        long long lo = 0, hi = 0;
+        int n = nums.size();
 
-        for (int x : nums) {
-            lo = max(lo, (long long)x);
-            hi += x;
-        }
+        if(k>n)return -1;
+        long long low = *max_element(nums.begin(), nums.end());
+        long long high = accumulate(nums.begin(), nums.end(), 0);
 
-        long long ans = hi;
-        while (lo <= hi) {
-            long long mid = lo + (hi - lo) / 2;
-            if (canSplit(nums, k, mid)) {
-                ans = mid;
-                hi = mid - 1;
-            } else {
-                lo = mid + 1;
-            }
-        }
-        return ans;
+        while(low<=high){
+            long long mid = (low+high)/2;
+
+            int ans = helper(nums, mid);
+            if(ans>k) low = mid+1;
+            else high = mid-1;
+
+        }return low;
     }
 };
