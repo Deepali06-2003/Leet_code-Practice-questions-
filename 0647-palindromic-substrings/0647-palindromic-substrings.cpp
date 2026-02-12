@@ -1,23 +1,19 @@
 class Solution {
 public:
+int ans=0;
 
-void isPalindrome(string s , int l , int h , int& ans){
+void helper(string s, int l , int h){
     while(l>=0 && h<s.size() && s[l]==s[h]){
         ans++;
         l--;
         h++;
-        
     }
 }
     int countSubstrings(string s) {
-        if(s.size()==0)return 0;
-        int n = s.size();
-
-        int ans=0;
         
-        for(int i=0;i<n;i++){
-            isPalindrome(s , i , i, ans);
-            isPalindrome(s , i , i+1, ans); 
+        for(int i =0;i<s.size();i++){
+            helper(s, i, i);
+            helper(s, i , i+1);
         }
         return ans;
     }
