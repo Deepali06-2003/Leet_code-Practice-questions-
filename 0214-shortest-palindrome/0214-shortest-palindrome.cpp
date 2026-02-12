@@ -1,15 +1,15 @@
 class Solution {
 public:
     string shortestPalindrome(string s) {
-        
-        string rev = s;
-        reverse(rev.begin(), rev.end());
+        int n = s.size();
+        string x = s;
+        reverse(s.begin(), s.end());
 
-        for(int i=0;i<s.size();i++){
-                    // s substring start frm 0 ind,   rev substring start from i ind, length 
-                    // 
-            
-            if(memcmp(s.c_str() , rev.c_str()+i , s.size()-i ) ==0)return rev.substr(0 , i)+s;
-        }return rev+s;
+        for(int i =0;i<s.size();i++){
+            if(memcmp(x.c_str() , s.c_str()+i,n-i) == 0){
+                return  s.substr(0, i)+x;
+            }
+        }
+        return s + x;
     }
 };
