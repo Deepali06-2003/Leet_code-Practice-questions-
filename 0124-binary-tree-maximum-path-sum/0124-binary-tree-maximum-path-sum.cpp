@@ -11,22 +11,21 @@
  */
 class Solution {
 public:
+int helper(TreeNode* root, int& ans){
 
-int helper(TreeNode* root , int& ans){
     if(root == NULL)return 0;
 
-    
     int ls = max(0 , helper(root->left , ans));
-    int rs = max(0 , helper(root->right , ans));
+    int rs = max(0 , helper(root->right, ans));
 
-    ans = max(ans , ls+rs+ root->val);
+    ans = max(ans , root->val + ls+rs);
 
-    return root->val + max(ls, rs);
+    return max(ls, rs)+ root->val;
 }
     int maxPathSum(TreeNode* root) {
+        
         int ans = INT_MIN;
-        helper(root , ans);
-
+        int s= helper(root , ans);
         return ans;
     }
 };
