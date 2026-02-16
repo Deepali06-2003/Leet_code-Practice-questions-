@@ -1,21 +1,22 @@
 class Solution {
 public:
-bool helper(vector<vector<char>>& board, string& word , int n , int m , int i , int j , int s){
-    if(s== word.size())return true;
-    if(i<0 || j<0 || i>=n || j>= m || word[s]!=board[i][j])return false;
+bool helepr(vector<vector<char>>& board, string word , int n , int m , int i , int j , int s){
 
-    char t = board[i][j];
-    board[i][j]= '-';
+    if(s == word.size())return true;
 
-    bool ans = helper(board, word , n , m , i+1, j, s+1) ||helper(board, word , n , m , i-1, j, s+1)||
-                helper(board, word , n , m , i, j+1, s+1)|| helper(board, word , n , m , i, j-1, s+1);
+    if(i<0 || j<0 || i>=n|| j>=m || board[i][j] != word[s])return false;
 
-    board[i][j]= t;
+    char x = board[i][j];
+    board[i][j]= '$';
 
-    return ans;
+    bool found = helepr(board , word , n , m , i+1 , j , s+1) || helepr(board , word , n , m , i-1 , j , s+1) || helepr(board , word , n , m , i , j+1 , s+1) || helepr(board , word , n , m , i , j-1 , s+1);
 
+    board[i][j] = x;
+
+    return found;
 }
     bool exist(vector<vector<char>>& board, string word) {
+        
         int n = board.size();
         int m = board[0].size();
 
@@ -23,11 +24,11 @@ bool helper(vector<vector<char>>& board, string& word , int n , int m , int i , 
             for(int j=0;j<m;j++){
 
                 if(board[i][j] == word[0]){
-                    if(helper(board , word, n , m , i , j, 0))return true;
-                    
+                    if(helepr(board , word , n , m , i , j , 0))return true;
                 }
             }
         }
+
         return false;
     }
 };
