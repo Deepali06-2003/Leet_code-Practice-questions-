@@ -49,8 +49,8 @@ void helper(vector<vector<int>>& heights, queue<pair<int, int>>& q, vector<vecto
             pac_q.push({0,i});
             pac[0][i]=true;
 
-            atl_q.push({n-1, 0});
-            atl[n-1][0]= true;
+            atl_q.push({n-1, i});
+            atl[n-1][i]= true;
         }
 
         helper(heights, pac_q, pac);
