@@ -1,18 +1,21 @@
 class Solution {
-    private:
-    struct compare {
-        bool operator()(vector<int>& p, vector<int>& q) {
-            return p[0] * p[0] + p[1] * p[1] > q[0] * q[0] + q[1] * q[1];
-        }
-    };
 public:
     vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
-        priority_queue<vector<int>, vector<vector<int>>, compare> pq(points.begin(), points.end());
-        vector<vector<int>> ans;
-        for (int i = 0; i < k; i++) {
-            ans.push_back(pq.top());
-            pq.pop();
+        vector<pair<long long, pair<int,int>>> v;
+
+        for(auto &p : points) {
+            long long d = 1LL*p[0]*p[0] + 1LL*p[1]*p[1];
+            v.push_back({d, {p[0], p[1]}});
         }
-        return ans;
+
+        sort(v.begin(), v.end());
+
+        vector<vector<int>>res;
+        for(int i = 0; i < k; i++) {
+            res.push_back({v[i].second.first,v[i].second.second});
+        }
+
+
+    return res;
     }
 };
