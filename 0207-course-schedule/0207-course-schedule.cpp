@@ -1,43 +1,38 @@
 class Solution {
 public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-        vector<vector<int>>adj(numCourses);
+        vector<int>adj[numCourses];
 
-        for(int i=0;i<prerequisites.size();i++){
-            int u = prerequisites[i][0];
-            int v = prerequisites[i][1];
-
-            adj[u].push_back(v);
+        for(int i=0; i<prerequisites.size() ;i++){
+            adj[prerequisites[i][0]].push_back(prerequisites[i][1]);
         }
 
         vector<int>indegree(numCourses, 0);
-        for(int i =0;i<numCourses; i++){
-            for(int j =0;j<adj[i].size() ;j++){
-                int x = adj[i][j];
-                indegree[x]++;
+        for(int i=0;i<numCourses;i++){
+            for(auto j : adj[i]){
+                indegree[j]++;
             }
         }
 
         queue<int>q;
-        vector<int>res;
-        for(int i =0;i<indegree.size();i++){
-            if(indegree[i]==0)
-            q.push(i);
+        for(int i=0;i<numCourses;i++){
+            if(indegree[i]==0)q.push(i);
         }
 
+        vector<int>res;
         while(!q.empty()){
 
-            int t = q.front();
+            int x = q.front();
             q.pop();
-            res.push_back(t);
 
-            for(int i = 0 ; i< adj[t].size(); i++){
-                int x = adj[t][i];
-                indegree[x]--;
-                if(indegree[x]==0)q.push(x);
+            res.push_back(x);
+
+            for(auto j : adj[x]){
+                indegree[j]--;
+                if(indegree[j]==0)q.push(j);
             }
         }
-        if(res.size() == numCourses)return true;
-        return false;
+
+        return (res.size()==numCourses);
     }
 };
