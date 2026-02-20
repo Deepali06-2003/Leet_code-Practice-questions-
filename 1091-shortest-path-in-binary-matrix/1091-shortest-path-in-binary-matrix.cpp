@@ -2,37 +2,39 @@ class Solution {
 public:
     int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
         int n = grid.size();
+        int m = grid[0].size();
 
-        queue<pair<int, int>>q;
+        if(grid[0][0] == 1 || grid[n-1][m-1] == 1)return -1;
 
-        if(grid[0][0]==1 || grid[n-1][n-1]==1)return -1;
+        queue<pair<int,int>>q;
 
-        vector<int>dx = {1, -1, 0 , 0 , -1 , 1, -1 , 1};
-        vector<int>dy = {0 , 0 , 1 , -1, -1 , 1, 1, -1 };
+        q.push({0,0});
 
-        int ans =1;
-        q.push({0 ,0});
+        vector<int> dx ={-1 ,1,0,0,-1,1,-1,1};
+        vector<int>dy = {0,0,-1,1,-1,1,1,-1};
+        int ans=1;
 
         while(!q.empty()){
-            int s = q.size();
+            int size= q.size();
+            for(int i =0;i<size;i++){
 
-            for(int i=0;i<s;i++){
-                pair<int, int>temp = q.front();
+                pair<int , int> node = q.front();
                 q.pop();
-
-                if(temp.first==n-1 && temp.second == n-1)return ans;
+                int node_i = node.first;
+                int node_j = node.second;
+                if(node_i == n-1 && node_j == m-1)return ans;
 
                 for(int j=0;j<8;j++){
-                    int nx = temp.first + dx[j];
-                    int ny = temp.second+ dy[j];
+                    int x = node_i + dx[j];
+                    int y = node_j + dy[j];
 
-                    if(nx>=0 && nx<n && ny>=0 && ny<n && grid[nx][ny]==0){
-                        grid[nx][ny]=1;
-                        q.push({nx, ny});
+                    if(x>=0 && x<n && y>= 0 && y<m && grid[x][y] == 0){
+                        grid[x][y] = 1;
+                        q.push({x, y});
                     }
                 }
             }
-            ans++;
+             ans++;
         }
         return -1;
     }
