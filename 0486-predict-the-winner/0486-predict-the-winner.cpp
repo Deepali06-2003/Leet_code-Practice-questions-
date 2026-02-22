@@ -1,22 +1,20 @@
 class Solution {
 public:
+int helper(vector<int>& nums,vector<vector<int>>& dp, int l , int r){
+    if(l>r)return 0;
+    if(l == r)return nums[l];
+    if(dp[l][r] != INT_MIN) return dp[l][r];
 
+    int lh = nums[l]- helper(nums ,dp, l+1, r);
+    int rh = nums[r] - helper(nums ,dp, l , r-1);
 
-int solve(vector<int>& nums , int l , int h, vector<vector<int>>& dp){
-    if(l>h)return 0;
-    if(l == h)return nums[l];
-
-    if (dp[l][h] != INT_MIN) return dp[l][h];
-
-    int i = nums[l] - solve(nums , l+1 , h, dp);
-    int j = nums[h] - solve(nums , l , h-1, dp);
-
-    return dp[l][h] = max(i , j);
+    return dp[l][r] = max(lh , rh);
 }
     bool predictTheWinner(vector<int>& nums) {
         int n = nums.size();
-        vector<vector<int>> dp(n, vector<int>(n, INT_MIN));
-        return solve(nums , 0 , n-1 , dp) >=0;
-    }
+        vector<vector<int>>dp(n , vector<int>(n, INT_MIN));
 
+        return helper(nums ,dp, 0 , n-1)>=0;
+
+    }
 };
