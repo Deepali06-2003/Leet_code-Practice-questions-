@@ -1,36 +1,32 @@
 class Solution {
 public:
-int helper(vector<int>& nums, int k, int m){
-
-    int c=1, curr_s =0;
+int helper(vector<int>& nums, int k , int m){
+    int c = 1, s=0;
 
     for(int i=0;i<nums.size();i++){
-        if((curr_s+nums[i])<= m){
-            curr_s = curr_s+ nums[i];
-        }
-        else{
-            c= c+1;
-            curr_s = nums[i];
-
+        if((s+nums[i]) <= m)  s= s+ nums[i];
+        else {
+            c = c+1;
+            s = nums[i];
         }
     }
-     return c;
+    return c;
 }
     int splitArray(vector<int>& nums, int k) {
-        int n = nums.size();
         
-        long long low = *max_element(nums.begin(), nums.end());
-        long long high = accumulate(nums.begin(), nums.end(), 0);
+        int n = nums.size();
 
-        while(low<=high){
+        if(k>n)return -1;
+        long long l = *max_element(nums.begin(), nums.end());
+        long long h = accumulate(nums.begin(), nums.end(), 0);
 
-            long long mid = (low+high)/2;
+        while(l<=h){
+            long long m = (l+h)/2;
 
-            int x = helper(nums, k , mid);
-            if(x > k)low = mid+1;
-            else high = mid-1;
-        }
+            int res = helper(nums, k , m);
 
-        return low;
+            if(res > k) l = m+1;
+            else h = m-1;
+        }return l;
     }
 };
