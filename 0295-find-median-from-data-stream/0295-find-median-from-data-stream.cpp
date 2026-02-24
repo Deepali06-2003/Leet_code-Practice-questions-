@@ -8,22 +8,11 @@ public:
     
     void addNum(int num) {
         
-        // insert element -> condition
-        if(max_heap.empty() || num <= max_heap.top()){
-            max_heap.push(num);
-        }
-        else{
-            min_heap.push(num);
-        }
+        max_heap.push(num);
+        min_heap.push(max_heap.top());
+        max_heap.pop();
 
-        //maxH.size()== minh.size() || maxH.size()==minH.size()+1
-        //updating size
-        if(max_heap.size() > min_heap.size()+1){
-            //pop ele from max_heap and push min_heap
-            min_heap.push(max_heap.top());
-            max_heap.pop();
-        }
-        else if (min_heap.size()> max_heap.size()){
+        if(min_heap.size() > max_heap.size()){
             max_heap.push(min_heap.top());
             min_heap.pop();
         }
