@@ -17,15 +17,14 @@ public:
 
         vector<int> dx = {0 , 0 , 1, -1};
         vector<int>dy= {1, -1, 0 , 0};
+        
         while(!q.empty()){
-
-            pair<int,int> temp = q.front();
+            pair<int, int>temp = q.front();
             q.pop();
 
-            if(temp.first< 0 || temp.second<0 || temp.first>= n || temp.second>=m || board[temp.first][temp.second]!='O' )continue;
+            if(temp.first < 0 || temp.second<0 || temp.first>=n || temp.second>=m || board[temp.first][temp.second] != 'O') continue;
 
-            board[temp.first][temp.second] = '#';
-
+            board[temp.first][temp.second] = '#';            
 
             for(int j=0;j<4;j++){
                 int nx = temp.first + dx[j];
@@ -36,9 +35,10 @@ public:
 
         for(int i=0;i<n;i++){
             for(int j =0;j<m;j++){
-                if(board[i][j] == '#')board[i][j] = 'O';
+                if(board[i][j] == '#') board[i][j] = 'O';
                 else board[i][j] = 'X';
             }
         }
+
     }
 };
