@@ -11,16 +11,18 @@ public:
 
         sort(arr.rbegin(), arr.rend());
 
-        double ans = (double)(target  - arr[0].first)/arr[0].second;
         int c=1;
+        double ans = (double)(target- arr[0].first)/arr[0].second;
 
-        for(int i=1;i<n;i++){
-            double curr = (double)(target - arr[i].first)/arr[i].second;
+        for(int i =1;i<n ;i++){
+            double curr = (double)(target- arr[i].first)/arr[i].second;
             
             if(curr > ans){
-                c++;
+                c = c+1;
                 ans = curr;
             }
-        } return c;
+        }
+
+        return c;
     }
 };
